@@ -8,7 +8,7 @@ var _reactRouterDom = require("react-router-dom");
 
 var _Home = _interopRequireDefault(require("./Home/Home"));
 
-var _CardCreationPage = require("./Create/CardCreationPage");
+var _CardCreationPage = _interopRequireDefault(require("./Create/CardCreationPage"));
 
 var _CardReviewPage = _interopRequireDefault(require("./Review/CardReviewPage"));
 
@@ -24,10 +24,10 @@ function Main() {
         exact: true,
         component: _Home.default
     }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/create/",
-        component: _CardCreationPage.CardCreateMain
+        path: "/create",
+        component: _CardCreationPage.default
     }), _react.default.createElement(_reactRouterDom.Route, {
-        path: "/review/",
+        path: "/review",
         component: _CardReviewPage.default
     }))));
 }

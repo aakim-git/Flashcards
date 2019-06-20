@@ -1,8 +1,15 @@
 "use strict";
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = void 0;
+
 var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
+
+var _reactRouterDom = require("react-router-dom");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26,23 +33,90 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var Review =
+var Header =
 /*#__PURE__*/
 function (_React$Component) {
-    _inherits(Review, _React$Component);
+    _inherits(Header, _React$Component);
 
-    function Review(props) {
+    function Header(props) {
+        _classCallCheck(this, Header);
+
+        return _possibleConstructorReturn(this, _getPrototypeOf(Header).call(this, props));
+    }
+
+    _createClass(Header, [{
+        key: "render",
+        value: function render() {
+            return _react.default.createElement("div", {
+                id: "header"
+            }, _react.default.createElement(ContinueButton, {
+                ButtonText: this.props.ButtonText
+            }), _react.default.createElement("h1", {
+                id: "logo"
+            }, "Lango!"), _react.default.createElement("div", {
+                id: "spacer"
+            }));
+        }
+    }]);
+
+    return Header;
+}(_react.default.Component);
+
+var ContinueButton =
+/*#__PURE__*/
+function (_React$Component2) {
+    _inherits(ContinueButton, _React$Component2);
+
+    function ContinueButton(props) {
+        _classCallCheck(this, ContinueButton);
+
+        return _possibleConstructorReturn(this, _getPrototypeOf(ContinueButton).call(this, props));
+    }
+
+    _createClass(ContinueButton, [{
+        key: "render",
+        value: function render() {
+            return _react.default.createElement(_reactRouterDom.Link, {
+                to: "/create"
+            }, _react.default.createElement("button", {
+                type: "button",
+                id: "Start-Review-Button"
+            }, this.props.ButtonText));
+        }
+    }]);
+
+    return ContinueButton;
+}(_react.default.Component); // -------------------------------------------------------------------
+
+
+function Footer(props) {
+    return _react.default.createElement("div", {
+        id: "footer"
+    }, " UserName ");
+}
+
+var Review =
+/*#__PURE__*/
+function (_React$Component3) {
+    _inherits(Review, _React$Component3);
+
+    function Review() {
         _classCallCheck(this, Review);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(Review).call(this, props));
+        return _possibleConstructorReturn(this, _getPrototypeOf(Review).apply(this, arguments));
     }
 
     _createClass(Review, [{
         key: "render",
         value: function render() {
-            return _react.default.createElement("h1", null, "REVIEW");
+            return _react.default.createElement("div", null, _react.default.createElement(Header, {
+                ButtonText: "Add"
+            }), _react.default.createElement("h1", null, "REVIEW"), _react.default.createElement(Footer, null));
         }
     }]);
 
     return Review;
 }(_react.default.Component);
+
+var _default = Review;
+exports.default = _default;

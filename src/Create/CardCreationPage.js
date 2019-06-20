@@ -9,6 +9,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _jquery = _interopRequireDefault(require("jquery"));
 
+var _reactRouterDom = require("react-router-dom");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
@@ -49,7 +51,9 @@ function (_React$Component) {
         value: function render() {
             return _react.default.createElement("div", {
                 id: "header"
-            }, _react.default.createElement(ContinueButton, null), Title, _react.default.createElement("div", {
+            }, _react.default.createElement(ContinueButton, null), _react.default.createElement("h1", {
+                id: "logo"
+            }, "Lango!"), _react.default.createElement("div", {
                 id: "spacer"
             }));
         }
@@ -57,10 +61,6 @@ function (_React$Component) {
 
     return Header;
 }(_react.default.Component);
-
-var Title = _react.default.createElement("h1", {
-    id: "logo"
-}, "Lango!");
 
 var ContinueButton =
 /*#__PURE__*/
@@ -76,10 +76,12 @@ function (_React$Component2) {
     _createClass(ContinueButton, [{
         key: "render",
         value: function render() {
-            return _react.default.createElement("button", {
+            return _react.default.createElement(_reactRouterDom.Link, {
+                to: "/review"
+            }, _react.default.createElement("button", {
                 type: "button",
                 id: "Start-Review-Button"
-            }, "Start Review");
+            }, "Start Review"));
         }
     }]);
 
@@ -277,6 +279,5 @@ function (_React$Component7) {
     return CardCreationMain;
 }(_react.default.Component);
 
-var _default = CardCreationMain; //ReactDOM.render(<CardCreationMain/>, document.getElementById('root'));
-
+var _default = CardCreationMain;
 exports.default = _default;

@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from 'react-dom'
 import {Link} from "react-router-dom";
-//import Route from "route-router-dom/Route";
 // -------------------------------------------------------------------
 
 class Title extends React.Component{
@@ -51,5 +50,4 @@ class Home extends React.Component{
 }
 
 export default Home;
-//ReactDOM.render(<Home/>, document.getElementById('root'));
 	 

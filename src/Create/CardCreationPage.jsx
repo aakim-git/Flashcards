@@ -1,8 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
+import {Link} from "react-router-dom";
 // -------------------------------------------------------------------
 
-// In charge of redirecting. 
 class Header extends React.Component{
 	constructor(props){
 		super(props);
@@ -12,14 +12,12 @@ class Header extends React.Component{
 		return(
 			<div id = "header">
 				<ContinueButton />
-				{Title}
+				<h1 id="logo">Lango!</h1>
 				<div id = "spacer"></div>
 			</div>
 		)
 	}
 }
-
-const Title = <h1 id="logo">Lango!</h1>;
 
 class ContinueButton extends React.Component{
 	constructor(props) {
@@ -28,9 +26,11 @@ class ContinueButton extends React.Component{
 
 	render(){
 		return(
-			<button type = "button" id = "Start-Review-Button">
-				Start Review
-			</button>
+			<Link to="/review">
+				<button type = "button" id = "Start-Review-Button">
+					Start Review
+				</button>
+			</Link>
 		);
 	}
 }
@@ -170,5 +170,4 @@ class CardCreationMain extends React.Component{
 }
 
 export default CardCreationMain;
-//ReactDOM.render(<CardCreationMain/>, document.getElementById('root'));
 	 
