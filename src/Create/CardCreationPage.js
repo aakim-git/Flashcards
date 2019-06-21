@@ -11,6 +11,8 @@ var _jquery = _interopRequireDefault(require("jquery"));
 
 var _reactRouterDom = require("react-router-dom");
 
+require("../CSS/CardCreationPage.css");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
@@ -34,7 +36,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 // -------------------------------------------------------------------
-// In charge of redirecting. 
 var Header =
 /*#__PURE__*/
 function (_React$Component) {
