@@ -24,9 +24,20 @@ textarea {
 #logo{
     text-align: center;
     align-items: center;
-    font-size: 70pt;
+    font-size: 50pt;
     font-family: 'Raleway', sans-serif;
     color: #606a9b;
+}
+
+#Start-Review-Button {
+    font-family: helvetica;
+    font-size: 10pt;
+    background-color: #606a9b;
+    border-radius: 5px;
+    padding: 1vh 4vh 1vh 4vh;
+    border: 1.5px solid gray;
+    margin: 11vh 20vh 0 0;
+    color: white;
 }
 
 #body{
@@ -42,7 +53,6 @@ textarea {
     flex: 0 1 100%;
 }
 
-
 #spacer{
     width: 10vh;   
 }
@@ -53,8 +63,8 @@ div.textCard {
     border-width: 2px;
     border-color: gray;
     
-    width: 40vh;
-    height: 35vh;
+    width: 55vh;
+    height: 40vh;
 
     display: flex;
 
@@ -70,20 +80,10 @@ div.textCard > textarea {
 
 }
 
-#Start-Review-Button{
-    font-family: helvetica;
-    font-size: 10pt;
-    background-color: #606a9b;
-    border-radius: 5px;
-    padding: 1vh 4vh 1vh 4vh;
-    border: 1.5px solid gray;
-    
-    margin: 6vh 20vh 0 0;
-    color: white;
-}
+
 
 #Save-Button{
-    margin: 2% 0 0 78vh;
+    margin: 2% 0 0 108vh;
     font-family: helvetica;
     font-size: 10pt;
     border-radius: 7px;

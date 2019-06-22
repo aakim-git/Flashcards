@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom'
 import {Link} from "react-router-dom";
+import '../CSS/Home.css';
 // -------------------------------------------------------------------
 
 class Title extends React.Component{
@@ -11,8 +12,8 @@ class Title extends React.Component{
 	render(){
 		return(
 			<div id = "TitlePanel">
-				<h1>Welcome to Lango</h1>
-				<h2>Customize your vocabulary</h2>
+				<h1>Welcome to Lingo!</h1>
+				<h2>Vocab is our middle name</h2>
 			</div>
 		);
 	}
@@ -26,7 +27,7 @@ class LoginPanel extends React.Component{
 	render(){
 		return(
 			<div id = "LoginPanel">
-				<div> <Link to="/create">Login</Link> </div>
+				<Link to="/create">Login</Link>
 			</div>
 		);
 	}

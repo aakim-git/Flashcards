@@ -19,7 +19,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function Main() {
-    return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
+    return _react.default.createElement(_reactRouterDom.BrowserRouter, null, _react.default.createElement(_reactRouterDom.Switch, null, _react.default.createElement(_reactRouterDom.Route, {
         path: "/",
         exact: true,
         component: _Home.default
@@ -29,7 +29,7 @@ function Main() {
     }), _react.default.createElement(_reactRouterDom.Route, {
         path: "/review",
         component: _CardReviewPage.default
-    }))));
+    })));
 }
 
 _reactDom.default.render(_react.default.createElement(Main, null), document.getElementById('root'));

@@ -10,13 +10,11 @@ import * as serviceWorker from './serviceWorker';
 function Main(){
 	return(
 		<BrowserRouter>
-			<div>
-				<Switch>
-					<Route path="/" exact component={Home} />
-					<Route path="/create" component={CardCreateMain} />
-					<Route path="/review" component={Review} />
-				</Switch>
-			</div>
+			<Switch>
+				<Route path="/" exact component={Home} />
+				<Route path="/create" component={CardCreateMain} />
+				<Route path="/review" component={Review} />
+			</Switch>
 		</BrowserRouter>
 	);
 }

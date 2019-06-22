@@ -11,6 +11,8 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _reactRouterDom = require("react-router-dom");
 
+require("../CSS/Home.css");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
@@ -33,7 +35,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-//import Route from "route-router-dom/Route";
 // -------------------------------------------------------------------
 var Title =
 /*#__PURE__*/
@@ -51,7 +52,7 @@ function (_React$Component) {
         value: function render() {
             return _react.default.createElement("div", {
                 id: "TitlePanel"
-            }, _react.default.createElement("h1", null, "Welcome to Lango"), _react.default.createElement("h2", null, "Customize your vocabulary"));
+            }, _react.default.createElement("h1", null, "Welcome to Lingo!"), _react.default.createElement("h2", null, "Vocab is our middle name"));
         }
     }]);
 
@@ -74,9 +75,9 @@ function (_React$Component2) {
         value: function render() {
             return _react.default.createElement("div", {
                 id: "LoginPanel"
-            }, _react.default.createElement("div", null, " ", _react.default.createElement(_reactRouterDom.Link, {
+            }, _react.default.createElement(_reactRouterDom.Link, {
                 to: "/create"
-            }, "Login"), " "));
+            }, "Login"));
         }
     }]);
 
@@ -106,6 +107,5 @@ function (_React$Component3) {
     return Home;
 }(_react.default.Component);
 
-var _default = Home; //ReactDOM.render(<Home/>, document.getElementById('root'));
-
+var _default = Home;
 exports.default = _default;
