@@ -11,6 +11,8 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _reactGoogleLogin = _interopRequireDefault(require("react-google-login"));
+
 require("../CSS/Home.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -68,16 +70,21 @@ function (_React$Component2) {
         _classCallCheck(this, LoginPanel);
 
         return _possibleConstructorReturn(this, _getPrototypeOf(LoginPanel).call(this, props));
-    }
+    } //<Link to="/create">Login</Link>
+
 
     _createClass(LoginPanel, [{
         key: "render",
         value: function render() {
             return _react.default.createElement("div", {
                 id: "LoginPanel"
-            }, _react.default.createElement(_reactRouterDom.Link, {
+            }, _react.default.createElement(_reactGoogleLogin.default, {
+                clientId: "293229937557-g2ig70pnt75k1d1ir3gc1f24smdnk38j.apps.googleusercontent.com",
+                buttonText: "Log in with Google",
+                onSuccess: this.GoogleSuccess
+            }), _react.default.createElement(_reactRouterDom.Link, {
                 to: "/create"
-            }, "Login"));
+            }, "Or not"));
         }
     }]);
 

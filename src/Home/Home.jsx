@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from 'react-dom'
 import {Link} from "react-router-dom";
+import GoogleLogin from 'react-google-login';
 import '../CSS/Home.css';
 // -------------------------------------------------------------------
 
@@ -24,10 +25,16 @@ class LoginPanel extends React.Component{
 		super(props);
 	}
 
+	//<Link to="/create">Login</Link>
 	render(){
 		return(
 			<div id = "LoginPanel">
-				<Link to="/create">Login</Link>
+				<GoogleLogin
+					clientId="293229937557-g2ig70pnt75k1d1ir3gc1f24smdnk38j.apps.googleusercontent.com"
+					buttonText="Log in with Google"
+					onSuccess={this.GoogleSuccess}
+				/>
+				<Link to="/create">Or not</Link>
 			</div>
 		);
 	}

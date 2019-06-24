@@ -16,7 +16,44 @@ const http = require('http');
 const APIkey = "AIzaSyASA6UAaiHkeRRrA_-Vx0Q6dFMs0CLsOJk"; 
 const url = "https://translation.googleapis.com/language/translate/v2?key="+APIkey
 
+// Set up Login and User Authentication
+const passport = require('passport');
+const cookieSession = require('cookie-session');
+const sqlite = require('sqlite3');
+const GoogleLogin = require('passport-google-oauth20');
+
+// Need to configure
+const GoogleLoginData = {
+    clientID: '293229937557-g2ig70pnt75k1d1ir3gc1f24smdnk38j.apps.googleusercontent.com',
+    clientSecret: 'LpQtBbqh83jGUxTC_zScOYU_',
+    callbackURL: '/auth/redirect'
+};
+
+passport.use(new GoogleLogin(GoogleLoginData, function (accessToken, refreshToken, profile, done) {
+    console.log("Google profile", profile);
+}));
+
+app.use(cookieSession({
+    maxAge: 6 * 60 * 60 * 1000,
+    // meaningless random string used for encryption
+    keys: ['hanger waldo mercy dance']
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 //---------------------------------------------------------------
+
+// Google Authentication
+app.get('/auth/google', function () {
+    console.log("First");
+    passport.authenticate('google', { scope: ['profile'] });
+});
+
+app.get('/auth/redirect', function () {
+    console.log("Second");
+    passport.authenticate('google');
+});
 
 // Store flashcard
 app.get('/store/*', function(req,res){
