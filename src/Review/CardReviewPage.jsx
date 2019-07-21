@@ -2,6 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from "react-router-dom";
 
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 class Header extends React.Component{
 	constructor(props){
 		super(props);
@@ -36,10 +39,22 @@ class ContinueButton extends React.Component{
 
 // -------------------------------------------------------------------
 
-function Footer(props) {
-	return(
-		<div id = "footer"> UserName </div>
-    );
+class Footer extends React.Component{
+	constructor(props) {
+		super(props);
+		this.logoff = this.logoff.bind(this);
+	}
+
+	logoff(){
+		cookies.remove('Lingo-Session', { path: '/'});
+		console.log("logged off!");
+	}
+
+	render(){
+		return(
+			<button id = "footer" onClick={this.logoff}> UserName </button>
+		);
+	}
 }
 
 

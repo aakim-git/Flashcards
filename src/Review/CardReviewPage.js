@@ -11,6 +11,8 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _universalCookie = _interopRequireDefault(require("universal-cookie"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
@@ -32,6 +34,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+var cookies = new _universalCookie.default();
 
 var Header =
 /*#__PURE__*/
@@ -89,16 +93,46 @@ function (_React$Component2) {
 }(_react.default.Component); // -------------------------------------------------------------------
 
 
-function Footer(props) {
-    return _react.default.createElement("div", {
-        id: "footer"
-    }, " UserName ");
-}
+var Footer =
+/*#__PURE__*/
+function (_React$Component3) {
+    _inherits(Footer, _React$Component3);
+
+    function Footer(props) {
+        var _this;
+
+        _classCallCheck(this, Footer);
+
+        _this = _possibleConstructorReturn(this, _getPrototypeOf(Footer).call(this, props));
+        _this.logoff = _this.logoff.bind(_assertThisInitialized(_this));
+        return _this;
+    }
+
+    _createClass(Footer, [{
+        key: "logoff",
+        value: function logoff() {
+            cookies.remove('Lingo-Session', {
+                path: '/'
+            });
+            console.log("logged off!");
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            return _react.default.createElement("button", {
+                id: "footer",
+                onClick: this.logoff
+            }, " UserName ");
+        }
+    }]);
+
+    return Footer;
+}(_react.default.Component);
 
 var Review =
 /*#__PURE__*/
-function (_React$Component3) {
-    _inherits(Review, _React$Component3);
+function (_React$Component4) {
+    _inherits(Review, _React$Component4);
 
     function Review() {
         _classCallCheck(this, Review);

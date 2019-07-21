@@ -2,6 +2,10 @@ import React from 'react';
 import $ from 'jquery';
 import {Link} from "react-router-dom";
 import '../CSS/CardCreationPage.css';
+
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+var User = cookies.get('Lingo-Session')
 // -------------------------------------------------------------------
 
 class Header extends React.Component{
@@ -40,7 +44,7 @@ class ContinueButton extends React.Component{
 
 function Footer(props) {
 	return(
-		<div id = "footer"> UserName </div>
+		<div id = "footer"> ${User.username} </div>
     );
 }
 
@@ -107,8 +111,10 @@ class CardCreationBody extends React.Component{
 	constructor(props){
 		super(props);
 		this.TranslateInput = this.TranslateInput.bind(this);
+		this.SaveCard = this.SaveCard.bind(this);
 		this.state = {
-			inputText: "Type a word, and hit ENTER to translate!"
+			FrontText: "",
+			BackText: "Type a word, and hit ENTER to translate!"
 		};
 	}
 
@@ -118,16 +124,33 @@ class CardCreationBody extends React.Component{
 				<div id = "Card-View-Pane">
 					<FrontCard TranslateInput = {this.TranslateInput} />
 					<div id = "spacer"></div>
-					<BackCard TranslatedText = {this.state.inputText} />
+					<BackCard TranslatedText = {this.state.BackText} />
 				</div>
-				<SaveButton />
+				<SaveButton SaveCard = {this.SaveCard}/>
 			</div>
 		)
 	}
 	
+	SaveCard(){
+		var url = "./store?front=" + this.state.FrontText + "?back=" + this.state.BackText + "?id=" + User.id;
+		var request = $.ajax({
+			type: "POST",
+			url: url,
+			success: 
+				function(data){
+					alert("Card saved!");
+				},
+
+			error:
+				function(error){
+					alert("Error");
+				}
+		});
+	}
+
 	TranslateInput(data) {
 		var url = "./translate?english=" + data;
-		this.setState({inputText: "Translating..."});
+		this.setState({BackText: "Translating..."});
 		var self = this;
 		var request = $.ajax({
 			type: "GET",
@@ -135,12 +158,12 @@ class CardCreationBody extends React.Component{
 			url: url,
 			success: 
 				function(data){
-					self.setState({inputText: data["translated"]});
+					self.setState({BackText: data["translated"]});
 				},
 
 			error:
 				function(error){
-					self.setState({inputText: "Error"});
+					self.setState({BackText: "Error"});
 				}
 		});
 	}

@@ -7,20 +7,6 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _reactDom = _interopRequireDefault(require("react-dom"));
-
-var _reactRouterDom = require("react-router-dom");
-
-var _reactGoogleLogin = _interopRequireDefault(require("react-google-login"));
-
-require("../CSS/Home.css");
-
-var _socket = _interopRequireDefault(require("socket.io-client"));
-
-var _OAuth = _interopRequireDefault(require("./OAuth"));
-
-var _universalCookie = _interopRequireDefault(require("universal-cookie"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
@@ -43,91 +29,28 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var cookies = new _universalCookie.default(); // initializes socket for authentication
-
-var socket = (0, _socket.default)("http://localhost:8080"); // -------------------------------------------------------------------
-
-var Title =
+var Login =
 /*#__PURE__*/
 function (_React$Component) {
-    _inherits(Title, _React$Component);
+    _inherits(Login, _React$Component);
 
-    function Title(props) {
-        _classCallCheck(this, Title);
+    function Login(props) {
+        _classCallCheck(this, Login);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(Title).call(this, props));
+        return _possibleConstructorReturn(this, _getPrototypeOf(Login).call(this, props));
     }
 
-    _createClass(Title, [{
+    _createClass(Login, [{
         key: "render",
         value: function render() {
-            return _react.default.createElement("div", {
-                id: "TitlePanel"
-            }, _react.default.createElement("h1", null, "Welcome to Lingo!"), _react.default.createElement("h2", null, "Vocab is our middle name"));
-        }
-    }]);
-
-    return Title;
-}(_react.default.Component);
-
-var LoginPanel =
-/*#__PURE__*/
-function (_React$Component2) {
-    _inherits(LoginPanel, _React$Component2);
-
-    function LoginPanel(props) {
-        _classCallCheck(this, LoginPanel);
-
-        return _possibleConstructorReturn(this, _getPrototypeOf(LoginPanel).call(this, props));
-    }
-
-    _createClass(LoginPanel, [{
-        key: "render",
-        value: function render() {
-            return _react.default.createElement("div", {
-                id: "LoginPanel"
-            }, _react.default.createElement(_OAuth.default, {
-                provider: "google",
-                socket: socket
-            }), _react.default.createElement(_reactRouterDom.Link, {
-                to: "/create"
-            }, "Or not"));
-        }
-    }]);
-
-    return LoginPanel;
-}(_react.default.Component);
-
-var Home =
-/*#__PURE__*/
-function (_React$Component3) {
-    _inherits(Home, _React$Component3);
-
-    function Home(props) {
-        _classCallCheck(this, Home);
-
-        return _possibleConstructorReturn(this, _getPrototypeOf(Home).call(this, props));
-    }
-
-    _createClass(Home, [{
-        key: "componentDidMount",
-        value: function componentDidMount() {
-            if (cookies.get('Lingo-Session')) {
-                this.props.history.push('review');
-            }
-        }
-    }, {
-        key: "render",
-        value: function render() {
-            // if user is logged in, should redirect to card_review_page
             return _react.default.createElement("div", {
                 id: "body"
-            }, _react.default.createElement(Title, null), _react.default.createElement(LoginPanel, null));
+            }, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
         }
     }]);
 
-    return Home;
+    return Login;
 }(_react.default.Component);
 
-var _default = Home;
+var _default = Login;
 exports.default = _default;

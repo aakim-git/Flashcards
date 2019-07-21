@@ -13,6 +13,8 @@ var _reactRouterDom = require("react-router-dom");
 
 require("../CSS/CardCreationPage.css");
 
+var _universalCookie = _interopRequireDefault(require("universal-cookie"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
@@ -35,7 +37,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-// -------------------------------------------------------------------
+var cookies = new _universalCookie.default();
+var User = cookies.get('Lingo-Session'); // -------------------------------------------------------------------
+
 var Header =
 /*#__PURE__*/
 function (_React$Component) {
@@ -93,7 +97,7 @@ function (_React$Component2) {
 function Footer(props) {
     return _react.default.createElement("div", {
         id: "footer"
-    }, " UserName ");
+    }, " $", User.username, " ");
 } // -------------------------------------------------------------------
 
 
@@ -207,8 +211,10 @@ function (_React$Component6) {
 
         _this3 = _possibleConstructorReturn(this, _getPrototypeOf(CardCreationBody).call(this, props));
         _this3.TranslateInput = _this3.TranslateInput.bind(_assertThisInitialized(_this3));
+        _this3.SaveCard = _this3.SaveCard.bind(_assertThisInitialized(_this3));
         _this3.state = {
-            inputText: "Type a word, and hit ENTER to translate!"
+            FrontText: "",
+            BackText: "Type a word, and hit ENTER to translate!"
         };
         return _this3;
     }
@@ -225,15 +231,33 @@ function (_React$Component6) {
             }), _react.default.createElement("div", {
                 id: "spacer"
             }), _react.default.createElement(BackCard, {
-                TranslatedText: this.state.inputText
-            })), _react.default.createElement(SaveButton, null));
+                TranslatedText: this.state.BackText
+            })), _react.default.createElement(SaveButton, {
+                SaveCard: this.SaveCard
+            }));
+        }
+    }, {
+        key: "SaveCard",
+        value: function SaveCard() {
+            var url = "./store?front=" + this.state.FrontText + "?back=" + this.state.BackText + "?id=" + User.id;
+
+            var request = _jquery.default.ajax({
+                type: "POST",
+                url: url,
+                success: function success(data) {
+                    alert("Card saved!");
+                },
+                error: function error(_error) {
+                    alert("Error");
+                }
+            });
         }
     }, {
         key: "TranslateInput",
         value: function TranslateInput(data) {
             var url = "./translate?english=" + data;
             this.setState({
-                inputText: "Translating..."
+                BackText: "Translating..."
             });
             var self = this;
 
@@ -243,12 +267,12 @@ function (_React$Component6) {
                 url: url,
                 success: function success(data) {
                     self.setState({
-                        inputText: data["translated"]
+                        BackText: data["translated"]
                     });
                 },
-                error: function error(_error) {
+                error: function error(_error2) {
                     self.setState({
-                        inputText: "Error"
+                        BackText: "Error"
                     });
                 }
             });

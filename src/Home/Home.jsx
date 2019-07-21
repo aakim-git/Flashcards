@@ -3,6 +3,13 @@ import ReactDOM from 'react-dom'
 import {Link} from "react-router-dom";
 import GoogleLogin from 'react-google-login';
 import '../CSS/Home.css';
+import io from 'socket.io-client';
+import OAuth from './OAuth';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
+// initializes socket for authentication
+const socket = io("http://localhost:8080"); 
 // -------------------------------------------------------------------
 
 class Title extends React.Component{
@@ -25,14 +32,12 @@ class LoginPanel extends React.Component{
 		super(props);
 	}
 
-	//<Link to="/create">Login</Link>
 	render(){
 		return(
 			<div id = "LoginPanel">
-				<GoogleLogin
-					clientId="293229937557-g2ig70pnt75k1d1ir3gc1f24smdnk38j.apps.googleusercontent.com"
-					buttonText="Log in with Google"
-					onSuccess={this.GoogleSuccess}
+				<OAuth 
+					provider='google'
+					socket={socket}
 				/>
 				<Link to="/create">Or not</Link>
 			</div>
@@ -46,7 +51,14 @@ class Home extends React.Component{
 		super(props);
 	}
 
+	componentDidMount() {
+		if (cookies.get('Lingo-Session')){
+			this.props.history.push('review');
+		}
+	}
+
 	render(){
+		// if user is logged in, should redirect to card_review_page
 		return(
 			<div id = "body">
 				<Title />
