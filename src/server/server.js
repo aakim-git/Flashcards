@@ -127,23 +127,19 @@ app.get('/API/isauthorized', function (req, res) {
 });
 
 // Store flashcard
-app.post('/store*', function(req,res){
-    let front = req.query.front;
-    let back = req.query.back;
-    let UserID = req.query.id;
-    console.log(Original + " " + Translated);
-
+app.post('/store*', function (req, res) {
     db.run(`INSERT INTO FlashCards (UserID, side1, side2)
-            VALUES (${UserID}, ${front}, ${back});`,
-           function (err) {
-               if (err) {
-                   console.log("Table creation error", err);
-               }
+            VALUES (${req.query.id}, '${req.query.front}', '${req.query.back}') `,
+            function (err) {
+                // MAKE IT SEND ERROR CODE
+                if (err) {
+                    res.send("Error");
+                }
 
-               else {
-                   console.log("Card Saved");
-               }
-           });
+                else {
+
+                }
+            });
 });
 
 
@@ -187,4 +183,19 @@ app.get('/translate*', function(req,res){
             }
         }
     );
+});
+
+// Translate Request
+app.get('/api/getcards*', function (req, res) {
+    var UserID = req.query.id;
+
+    db.all(`SELECT * from FlashCards where UserID = ${UserID}`, [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+
+        console.log(rows);
+        res.send(rows);
+    });
+
 });

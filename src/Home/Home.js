@@ -89,9 +89,7 @@ function (_React$Component2) {
             }, _react.default.createElement(_OAuth.default, {
                 provider: "google",
                 socket: socket
-            }), _react.default.createElement(_reactRouterDom.Link, {
-                to: "/create"
-            }, "Or not"));
+            }));
         }
     }]);
 

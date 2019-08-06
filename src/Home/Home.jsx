@@ -39,7 +39,6 @@ class LoginPanel extends React.Component{
 					provider='google'
 					socket={socket}
 				/>
-				<Link to="/create">Or not</Link>
 			</div>
 		);
 	}

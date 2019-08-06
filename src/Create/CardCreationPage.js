@@ -17,7 +17,7 @@ var _universalCookie = _interopRequireDefault(require("universal-cookie"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
+function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return !!right[Symbol.hasInstance](left); } else { return left instanceof right; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -82,11 +82,11 @@ function (_React$Component2) {
         key: "render",
         value: function render() {
             return _react.default.createElement(_reactRouterDom.Link, {
-                to: "/review"
+                to: "/practice"
             }, _react.default.createElement("button", {
                 type: "button",
-                id: "Start-Review-Button"
-            }, "Start Review"));
+                id: "Start-Practice-Button"
+            }, "Start Practicing!"));
         }
     }]);
 
@@ -113,6 +113,7 @@ function (_React$Component3) {
 
         _this = _possibleConstructorReturn(this, _getPrototypeOf(FrontCard).call(this, props));
         _this.checkReturn = _this.checkReturn.bind(_assertThisInitialized(_this));
+        _this.UpdateFrontText = _this.UpdateFrontText.bind(_assertThisInitialized(_this));
         _this.TextArea = _react.default.createRef();
         return _this;
     }
@@ -125,8 +126,14 @@ function (_React$Component3) {
                 id: "FrontCard"
             }, _react.default.createElement("textarea", {
                 onKeyPress: this.checkReturn,
+                onKeyUp: this.UpdateFrontText,
                 ref: this.TextArea
             }));
+        }
+    }, {
+        key: "UpdateFrontText",
+        value: function UpdateFrontText() {
+            this.props.UpdateFrontText(this.TextArea.current.value);
         }
     }, {
         key: "checkReturn",
@@ -170,13 +177,9 @@ function (_React$Component5) {
     _inherits(SaveButton, _React$Component5);
 
     function SaveButton(props) {
-        var _this2;
-
         _classCallCheck(this, SaveButton);
 
-        _this2 = _possibleConstructorReturn(this, _getPrototypeOf(SaveButton).call(this, props));
-        _this2.storeCard = _this2.storeCard.bind(_assertThisInitialized(_this2));
-        return _this2;
+        return _possibleConstructorReturn(this, _getPrototypeOf(SaveButton).call(this, props));
     }
 
     _createClass(SaveButton, [{
@@ -185,14 +188,8 @@ function (_React$Component5) {
             return _react.default.createElement("button", {
                 type: "button",
                 id: "Save-Button",
-                onClick: this.storeCard
+                onClick: this.props.SaveCard
             }, "Save");
-        }
-    }, {
-        key: "storeCard",
-        value: function storeCard() {
-            var input = document.getElementById('InputCard');
-            var translated = document.getElementById('TranslatedCard');
         }
     }]);
 
@@ -205,18 +202,18 @@ function (_React$Component6) {
     _inherits(CardCreationBody, _React$Component6);
 
     function CardCreationBody(props) {
-        var _this3;
+        var _this2;
 
         _classCallCheck(this, CardCreationBody);
 
-        _this3 = _possibleConstructorReturn(this, _getPrototypeOf(CardCreationBody).call(this, props));
-        _this3.TranslateInput = _this3.TranslateInput.bind(_assertThisInitialized(_this3));
-        _this3.SaveCard = _this3.SaveCard.bind(_assertThisInitialized(_this3));
-        _this3.state = {
-            FrontText: "",
-            BackText: "Type a word, and hit ENTER to translate!"
-        };
-        return _this3;
+        _this2 = _possibleConstructorReturn(this, _getPrototypeOf(CardCreationBody).call(this, props));
+        _this2.TranslateInput = _this2.TranslateInput.bind(_assertThisInitialized(_this2));
+        _this2.UpdateFrontText = _this2.UpdateFrontText.bind(_assertThisInitialized(_this2));
+        _this2.UpdateBackText = _this2.UpdateBackText.bind(_assertThisInitialized(_this2));
+        _this2.SaveCard = _this2.SaveCard.bind(_assertThisInitialized(_this2));
+        _this2.FrontText = "";
+        _this2.BackText = "Type a word, and hit ENTER to translate!";
+        return _this2;
     }
 
     _createClass(CardCreationBody, [{
@@ -227,11 +224,12 @@ function (_React$Component6) {
             }, _react.default.createElement("div", {
                 id: "Card-View-Pane"
             }, _react.default.createElement(FrontCard, {
+                UpdateFrontText: this.UpdateFrontText,
                 TranslateInput: this.TranslateInput
             }), _react.default.createElement("div", {
                 id: "spacer"
             }), _react.default.createElement(BackCard, {
-                TranslatedText: this.state.BackText
+                TranslatedText: this.BackText
             })), _react.default.createElement(SaveButton, {
                 SaveCard: this.SaveCard
             }));
@@ -239,12 +237,13 @@ function (_React$Component6) {
     }, {
         key: "SaveCard",
         value: function SaveCard() {
-            var url = "./store?front=" + this.state.FrontText + "?back=" + this.state.BackText + "?id=" + User.id;
+            var url = "./store?front=" + this.FrontText + "&back=" + this.BackText + "&id=" + User.UserID;
 
             var request = _jquery.default.ajax({
                 type: "POST",
                 url: url,
                 success: function success(data) {
+                    //NEEDS TO RECIEVE ERROR CODE
                     alert("Card saved!");
                 },
                 error: function error(_error) {
@@ -256,9 +255,7 @@ function (_React$Component6) {
         key: "TranslateInput",
         value: function TranslateInput(data) {
             var url = "./translate?english=" + data;
-            this.setState({
-                BackText: "Translating..."
-            });
+            this.UpdateBackText("Translating...");
             var self = this;
 
             var request = _jquery.default.ajax({
@@ -266,16 +263,23 @@ function (_React$Component6) {
                 dataType: "json",
                 url: url,
                 success: function success(data) {
-                    self.setState({
-                        BackText: data["translated"]
-                    });
+                    self.UpdateBackText(data["translated"]);
                 },
                 error: function error(_error2) {
-                    self.setState({
-                        BackText: "Error"
-                    });
+                    self.UpdateBackText("Error");
                 }
             });
+        }
+    }, {
+        key: "UpdateFrontText",
+        value: function UpdateFrontText(text) {
+            this.FrontText = text;
+        }
+    }, {
+        key: "UpdateBackText",
+        value: function UpdateBackText(data) {
+            this.BackText = data;
+            this.forceUpdate();
         }
     }]);
 
@@ -283,26 +287,26 @@ function (_React$Component6) {
 }(_react.default.Component); // -------------------------------------------------------------------
 
 
-var CardCreationMain =
+var Create =
 /*#__PURE__*/
 function (_React$Component7) {
-    _inherits(CardCreationMain, _React$Component7);
+    _inherits(Create, _React$Component7);
 
-    function CardCreationMain(props) {
-        _classCallCheck(this, CardCreationMain);
+    function Create(props) {
+        _classCallCheck(this, Create);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(CardCreationMain).call(this, props));
+        return _possibleConstructorReturn(this, _getPrototypeOf(Create).call(this, props));
     }
 
-    _createClass(CardCreationMain, [{
+    _createClass(Create, [{
         key: "render",
         value: function render() {
             return _react.default.createElement("main", null, _react.default.createElement(Header, null), _react.default.createElement(CardCreationBody, null), _react.default.createElement(Footer, null));
         }
     }]);
 
-    return CardCreationMain;
+    return Create;
 }(_react.default.Component);
 
-var _default = CardCreationMain;
+var _default = Create;
 exports.default = _default;

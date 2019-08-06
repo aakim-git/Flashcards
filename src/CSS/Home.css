@@ -47,13 +47,24 @@ html, body, #root, #body {
     height: 100%;
 }
 
-#LoginPanel > a{
-    font-size: 30pt;
-    font-family: 'Open Sans', sans-serif;
+#LoginPanel > button{
+    font-size: 10pt;
+    font-family: helvetica;
     font-style: normal;
     font-weight: 300;
+    color: white;
+    display: flex;
+
+    align-items: center;
     
-    text-align: center;
-    background-color: #88cbb5;
-    width: 50%;
+    background-color: #71c7ab;
+    width: 30%;
+    padding: 0.7% 0.7% 0.7% 0.7%;
+    border: none;
+}
+
+#LoginPanel > button > #GoogleIcon{
+    height: 20%;
+    width: 20%;
+    margin: 0 5% 0 5%;
 }

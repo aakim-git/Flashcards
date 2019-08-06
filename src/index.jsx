@@ -5,8 +5,9 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 import Home from './Home/Home';
-import CardCreateMain from './Create/CardCreationPage';
+import Create from './Create/CardCreationPage';
 import Review from './Review/CardReviewPage';
+import Practice from './Practice/CardPracticePage';
 import Login from './Home/Login';
 import * as serviceWorker from './serviceWorker';
 
@@ -20,8 +21,9 @@ class Main extends React.Component {
 			<BrowserRouter>
 				<Switch>
 					<Route path="/" exact component={Home} />
-					<PrivateRoute path="/create" component={CardCreateMain} />
+					<PrivateRoute path="/create" component={Create} />
 					<PrivateRoute path="/review" component={Review} />
+					<PrivateRoute path="/practice" component={Practice} />
 				</Switch>
 			</BrowserRouter>
 		);

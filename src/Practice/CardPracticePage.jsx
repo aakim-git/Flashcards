@@ -1,12 +1,6 @@
 import React from 'react';
-import $ from 'jquery';
-import {Link} from "react-router-dom";
-import '../CSS/CardCreationPage.css';
-
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
-let User = cookies.get('Lingo-Session');
-// -------------------------------------------------------------------
+import Flashcard from './Flashcard';
+import '../CSS/CardPracticePage.css';
 
 class Header extends React.Component{
 	constructor(props){
@@ -49,48 +43,6 @@ function Footer(props) {
 }
 
 // -------------------------------------------------------------------
-
-class FrontCard extends React.Component{
-	constructor(props) {
-		super(props);
-		this.checkReturn = this.checkReturn.bind(this);
-		this.UpdateFrontText = this.UpdateFrontText.bind(this);
-
-		this.TextArea = React.createRef();
-	}
-
-	render(){
-		return(
-			<div className="textCard" id="FrontCard">
-				<textarea onKeyPress={this.checkReturn} onKeyUp={this.UpdateFrontText} ref = {this.TextArea}/>
-			</div>
-		);
-	}
-
-	UpdateFrontText(){
-		this.props.UpdateFrontText(this.TextArea.current.value);
-	}
-
-	checkReturn(event) {
-		if(event.charCode == 13){
-			this.props.TranslateInput(this.TextArea.current.value);
-		}
-	}
-}
-
-class BackCard extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
-	render(){
-		return(
-			<div className="textCard" id = "BackCard">
-				<p>{this.props.TranslatedText}</p>
-			</div>
-		);
-	}
-}
 
 class SaveButton extends React.Component{
 	constructor(props) {
@@ -188,7 +140,7 @@ class CardCreationBody extends React.Component{
 
 
 	  
-class Create extends React.Component{
+class Practice extends React.Component{
 	constructor(props){
 		super(props);
 	}
@@ -197,7 +149,7 @@ class Create extends React.Component{
 		return(
 			<main>
 				<Header />
-				<CardCreationBody />
+				<Flashcard />
 				<Footer/>
 			</main>
 		)
@@ -206,5 +158,5 @@ class Create extends React.Component{
 
 }
 
-export default Create;
+export default Practice;
 	 

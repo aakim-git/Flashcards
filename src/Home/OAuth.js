@@ -13,9 +13,11 @@ var _reactFontawesome = _interopRequireDefault(require("react-fontawesome"));
 
 var _universalCookie = _interopRequireDefault(require("universal-cookie"));
 
+var _google = _interopRequireDefault(require("../public/google.png"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
+function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return !!right[Symbol.hasInstance](left); } else { return left instanceof right; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -107,7 +109,6 @@ function (_React$Component) {
             var height = 600;
             var left = window.innerWidth / 2 - width / 2;
             var top = window.innerHeight / 2 - height / 2;
-            console.log(this.props.socket.id);
             var url = "http://localhost:8080/login/".concat(this.props.provider, "?socketId=").concat(this.props.socket.id);
             return window.open(url, '', "toolbar=no, location=no, directories=no, status=no, menubar=no, \n\t\t\tscrollbars=no, resizable=no, copyhistory=no, width=".concat(width, ", \n\t\t\theight=").concat(height, ", top=").concat(top, ", left=").concat(left));
         } // sets Timer that fires every 1 second. 
@@ -144,8 +145,9 @@ function (_React$Component) {
             var disabled = this.state.popup_open;
             return _react.default.createElement("button", {
                 onClick: this.startAuth
-            }, _react.default.createElement(_reactFontawesome.default, {
-                name: provider
+            }, _react.default.createElement("img", {
+                src: _google.default,
+                id: "GoogleIcon"
             }), "Log in with Google");
         }
     }]);

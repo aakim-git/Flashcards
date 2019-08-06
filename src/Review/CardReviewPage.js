@@ -11,11 +11,15 @@ var _reactDom = _interopRequireDefault(require("react-dom"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _jquery = _interopRequireDefault(require("jquery"));
+
+require("../CSS/CardReviewPage.css");
+
 var _universalCookie = _interopRequireDefault(require("universal-cookie"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
+function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return !!right[Symbol.hasInstance](left); } else { return left instanceof right; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -84,7 +88,7 @@ function (_React$Component2) {
                 to: "/create"
             }, _react.default.createElement("button", {
                 type: "button",
-                id: "Start-Review-Button"
+                id: "Start-Create-Button"
             }, this.props.ButtonText));
         }
     }]);
@@ -134,18 +138,54 @@ var Review =
 function (_React$Component4) {
     _inherits(Review, _React$Component4);
 
-    function Review() {
+    function Review(props) {
+        var _this2;
+
         _classCallCheck(this, Review);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(Review).apply(this, arguments));
+        _this2 = _possibleConstructorReturn(this, _getPrototypeOf(Review).call(this, props));
+        _this2.state = {
+            cards: []
+        };
+        return _this2;
     }
 
     _createClass(Review, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var _this3 = this;
+
+            console.log("loading cards...");
+            var User = cookies.get('Lingo-Session');
+            var url = "/api/getcards?id=" + User.UserID;
+
+            var request = _jquery.default.ajax({
+                type: "GET",
+                url: url,
+                success: function success(data) {
+                    _this3.setState({
+                        cards: data
+                    });
+
+                    console.log("got cards");
+                }
+            });
+        }
+    }, {
         key: "render",
         value: function render() {
+            var _this4 = this;
+
             return _react.default.createElement("div", null, _react.default.createElement(Header, {
                 ButtonText: "Add"
-            }), _react.default.createElement("h1", null, "REVIEW"), _react.default.createElement(Footer, null));
+            }), _react.default.createElement("div", null, function (rows, i, len) {
+                while (i < len) {
+                    rows.push(_react.default.createElement("div", null, _this4.state.cards[i].side1, " ", _this4.state.cards[i].side2));
+                    i++;
+                }
+
+                return rows;
+            }([], 0, this.state.cards.length)), _react.default.createElement(Footer, null));
         }
     }]);
 

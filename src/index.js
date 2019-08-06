@@ -14,6 +14,8 @@ var _CardCreationPage = _interopRequireDefault(require("./Create/CardCreationPag
 
 var _CardReviewPage = _interopRequireDefault(require("./Review/CardReviewPage"));
 
+var _CardPracticePage = _interopRequireDefault(require("./Practice/CardPracticePage"));
+
 var _Login = _interopRequireDefault(require("./Home/Login"));
 
 var serviceWorker = _interopRequireWildcard(require("./serviceWorker"));
@@ -28,7 +30,7 @@ function _objectWithoutProperties(source, excluded) { if (source == null) return
 
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
 
-function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return right[Symbol.hasInstance](left); } else { return left instanceof right; } }
+function _instanceof(left, right) { if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) { return !!right[Symbol.hasInstance](left); } else { return left instanceof right; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -74,6 +76,9 @@ function (_React$Component) {
             }), _react.default.createElement(PrivateRoute, {
                 path: "/review",
                 component: _CardReviewPage.default
+            }), _react.default.createElement(PrivateRoute, {
+                path: "/practice",
+                component: _CardPracticePage.default
             })));
         }
     }]);
