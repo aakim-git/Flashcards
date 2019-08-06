@@ -85,13 +85,19 @@ class Review extends React.Component{
 		return(
 			<div>
 				<Header ButtonText="Add"/>
-				<div>
+				<div id = "ReviewList">
 					{
 						((rows, i, len) => {
 							while(i < len){
-								rows.push(<div>{this.state.cards[i].side1} {this.state.cards[i].side2}</div>);
+								rows.push(
+									<div class = "entry">
+										<div class = "side1"> {this.state.cards[i].side1} </div>
+										<div class = "side2"> {this.state.cards[i].side2} </div>
+									</div>
+								);
 								i++;
 							}
+							rows.push(<div class = "spacer"></div>)
 							return rows;
 						})([], 0, this.state.cards.length)
 					}

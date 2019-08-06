@@ -1,6 +1,7 @@
 import React from 'react';
 import Flashcard from './Flashcard';
 import {Link} from "react-router-dom";
+import $ from 'jquery';
 import '../CSS/CardPracticePage.css';
 
 import Cookies from 'universal-cookie';
@@ -16,7 +17,9 @@ class Header extends React.Component{
 		return(
 			<div id = "header">
 				<ContinueButton />
-				<h1 id="logo">Lango!</h1>
+				<Link to="/review">
+					<h1 id="logo">Lango!</h1>
+				</Link>
 				<div id = "spacer"></div>
 			</div>
 		)
@@ -52,20 +55,14 @@ function Footer(props) {
 class NextButton extends React.Component{
 	constructor(props) {
 		super(props);
-
-		this.NextCard = this.NextCard.bind(this);
 	}
 
 	render(){
 		return(
-			<button type = "button" id = "NextButton" onClick = {this.NextCard}>
+			<button type = "button" id = "NextButton" onClick = {this.props.NextCard}>
 				Next
 			</button>
 		);
-	}
-
-	NextCard(){
-		console.log("ohohohoo");
 	}
 
 }
@@ -73,16 +70,46 @@ class NextButton extends React.Component{
 class CardPracticeBody extends React.Component{
 	constructor(props){
 		super(props);
+
+		this.NextCard = this.NextCard.bind(this);
+
+		this.curFront = "";
+		this.curBack = "";
+		this.cards = null;
+	}
+
+	componentDidMount(){
+		var User = cookies.get('Lingo-Session');
+		var url = "/api/getcards?id=" + User.UserID;
+		var request = $.ajax({
+			type: "GET",
+			url: url,
+			success: 
+				(data) => {
+					this.cards = data;
+					this.NextCard();
+					console.log("got cards");
+				}
+		});
+	}
+	
+	NextCard(){
+		var len = this.cards.length;
+		var cur_card = this.cards[Math.floor(Math.random() * len)];
+		this.curFront = cur_card.side1;
+		this.curBack = cur_card.side2;
+		this.forceUpdate();
 	}
 
 	render(){
 		return(
-			<div id = "body">
-				<Flashcard />
-				<NextButton />
+			<div id = "CardPracticeBody">
+				<Flashcard FrontText={this.curFront} BackText={this.curBack} />
+				<NextButton NextCard = {this.NextCard} />
 			</div>
-		)
+		);
 	}
+
 }
 
 

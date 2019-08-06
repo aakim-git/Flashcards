@@ -11,6 +11,8 @@ var _Flashcard = _interopRequireDefault(require("./Flashcard"));
 
 var _reactRouterDom = require("react-router-dom");
 
+var _jquery = _interopRequireDefault(require("jquery"));
+
 require("../CSS/CardPracticePage.css");
 
 var _universalCookie = _interopRequireDefault(require("universal-cookie"));
@@ -56,9 +58,11 @@ function (_React$Component) {
         value: function render() {
             return _react.default.createElement("div", {
                 id: "header"
-            }, _react.default.createElement(ContinueButton, null), _react.default.createElement("h1", {
+            }, _react.default.createElement(ContinueButton, null), _react.default.createElement(_reactRouterDom.Link, {
+                to: "/review"
+            }, _react.default.createElement("h1", {
                 id: "logo"
-            }, "Lango!"), _react.default.createElement("div", {
+            }, "Lango!")), _react.default.createElement("div", {
                 id: "spacer"
             }));
         }
@@ -107,13 +111,9 @@ function (_React$Component3) {
     _inherits(NextButton, _React$Component3);
 
     function NextButton(props) {
-        var _this;
-
         _classCallCheck(this, NextButton);
 
-        _this = _possibleConstructorReturn(this, _getPrototypeOf(NextButton).call(this, props));
-        _this.NextCard = _this.NextCard.bind(_assertThisInitialized(_this));
-        return _this;
+        return _possibleConstructorReturn(this, _getPrototypeOf(NextButton).call(this, props));
     }
 
     _createClass(NextButton, [{
@@ -122,13 +122,8 @@ function (_React$Component3) {
             return _react.default.createElement("button", {
                 type: "button",
                 id: "NextButton",
-                onClick: this.NextCard
+                onClick: this.props.NextCard
             }, "Next");
-        }
-    }, {
-        key: "NextCard",
-        value: function NextCard() {
-            console.log("ohohohoo");
         }
     }]);
 
@@ -141,17 +136,58 @@ function (_React$Component4) {
     _inherits(CardPracticeBody, _React$Component4);
 
     function CardPracticeBody(props) {
+        var _this;
+
         _classCallCheck(this, CardPracticeBody);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(CardPracticeBody).call(this, props));
+        _this = _possibleConstructorReturn(this, _getPrototypeOf(CardPracticeBody).call(this, props));
+        _this.NextCard = _this.NextCard.bind(_assertThisInitialized(_this));
+        _this.curFront = "";
+        _this.curBack = "";
+        _this.cards = null;
+        return _this;
     }
 
     _createClass(CardPracticeBody, [{
+        key: "componentDidMount",
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            var User = cookies.get('Lingo-Session');
+            var url = "/api/getcards?id=" + User.UserID;
+
+            var request = _jquery.default.ajax({
+                type: "GET",
+                url: url,
+                success: function success(data) {
+                    _this2.cards = data;
+
+                    _this2.NextCard();
+
+                    console.log("got cards");
+                }
+            });
+        }
+    }, {
+        key: "NextCard",
+        value: function NextCard() {
+            var len = this.cards.length;
+            var cur_card = this.cards[Math.floor(Math.random() * len)];
+            this.curFront = cur_card.side1;
+            this.curBack = cur_card.side2;
+            this.forceUpdate();
+        }
+    }, {
         key: "render",
         value: function render() {
             return _react.default.createElement("div", {
-                id: "body"
-            }, _react.default.createElement(_Flashcard.default, null), _react.default.createElement(NextButton, null));
+                id: "CardPracticeBody"
+            }, _react.default.createElement(_Flashcard.default, {
+                FrontText: this.curFront,
+                BackText: this.curBack
+            }), _react.default.createElement(NextButton, {
+                NextCard: this.NextCard
+            }));
         }
     }]);
 

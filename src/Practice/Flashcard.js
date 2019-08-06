@@ -29,7 +29,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var cardContainer = document.querySelector('.react-card'); // React component for form inputs
+var cardContainer = document.querySelector('.react-card');
 
 var CardInput =
 /*#__PURE__*/
@@ -56,8 +56,7 @@ function (_React$Component) {
     }]);
 
     return CardInput;
-}(_react.default.Component); // React component for textarea
-
+}(_react.default.Component);
 
 var CardTextarea =
 /*#__PURE__*/
@@ -83,8 +82,7 @@ function (_React$Component2) {
     }]);
 
     return CardTextarea;
-}(_react.default.Component); // React component for the front side of the card
-
+}(_react.default.Component);
 
 var CardFront =
 /*#__PURE__*/
@@ -111,8 +109,7 @@ function (_React$Component3) {
     }]);
 
     return CardFront;
-}(_react.default.Component); // React component for the back side of the card
-
+}(_react.default.Component);
 
 var CardBack =
 /*#__PURE__*/
@@ -139,37 +136,36 @@ function (_React$Component4) {
     }]);
 
     return CardBack;
-}(_react.default.Component); // React component for the card (main component)
+}(_react.default.Component);
 
-
-var Practice =
+var Flashcard =
 /*#__PURE__*/
 function (_React$Component5) {
-    _inherits(Practice, _React$Component5);
+    _inherits(Flashcard, _React$Component5);
 
-    function Practice() {
-        _classCallCheck(this, Practice);
+    function Flashcard() {
+        _classCallCheck(this, Flashcard);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(Practice).apply(this, arguments));
+        return _possibleConstructorReturn(this, _getPrototypeOf(Flashcard).apply(this, arguments));
     }
 
-    _createClass(Practice, [{
+    _createClass(Flashcard, [{
         key: "render",
-        value: function render() {
+        value: function render(props) {
             return _react.default.createElement("div", {
                 className: "card-container"
             }, _react.default.createElement("div", {
                 className: "card-body"
             }, _react.default.createElement(CardBack, {
-                text: "Correct!"
+                text: this.props.BackText
             }), _react.default.createElement(CardFront, {
-                text: "Volare"
+                text: this.props.FrontText
             })));
         }
     }]);
 
-    return Practice;
+    return Flashcard;
 }(_react.default.Component);
 
-var _default = Practice;
+var _default = Flashcard;
 exports.default = _default;

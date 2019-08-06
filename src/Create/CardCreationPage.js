@@ -56,9 +56,11 @@ function (_React$Component) {
         value: function render() {
             return _react.default.createElement("div", {
                 id: "header"
-            }, _react.default.createElement(ContinueButton, null), _react.default.createElement("h1", {
+            }, _react.default.createElement(ContinueButton, null), _react.default.createElement(_reactRouterDom.Link, {
+                to: "/review"
+            }, _react.default.createElement("h1", {
                 id: "logo"
-            }, "Lango!"), _react.default.createElement("div", {
+            }, "Lango!")), _react.default.createElement("div", {
                 id: "spacer"
             }));
         }
@@ -187,7 +189,7 @@ function (_React$Component5) {
         value: function render() {
             return _react.default.createElement("button", {
                 type: "button",
-                id: "NextButton",
+                id: "Save-Button",
                 onClick: this.props.SaveCard
             }, "Save");
         }

@@ -178,12 +178,23 @@ function (_React$Component4) {
 
             return _react.default.createElement("div", null, _react.default.createElement(Header, {
                 ButtonText: "Add"
-            }), _react.default.createElement("div", null, function (rows, i, len) {
+            }), _react.default.createElement("div", {
+                id: "ReviewList"
+            }, function (rows, i, len) {
                 while (i < len) {
-                    rows.push(_react.default.createElement("div", null, _this4.state.cards[i].side1, " ", _this4.state.cards[i].side2));
+                    rows.push(_react.default.createElement("div", {
+                        class: "entry"
+                    }, _react.default.createElement("div", {
+                        class: "side1"
+                    }, " ", _this4.state.cards[i].side1, " "), _react.default.createElement("div", {
+                        class: "side2"
+                    }, " ", _this4.state.cards[i].side2, " ")));
                     i++;
                 }
 
+                rows.push(_react.default.createElement("div", {
+                    class: "spacer"
+                }));
                 return rows;
             }([], 0, this.state.cards.length)), _react.default.createElement(Footer, null));
         }

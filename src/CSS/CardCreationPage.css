@@ -1,6 +1,9 @@
-
 body {
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
 }
 
 textarea:focus {
@@ -21,7 +24,7 @@ textarea {
     width: 40vh;
 }
 
-#logo{
+#logo {
     text-align: center;
     align-items: center;
     font-size: 50pt;

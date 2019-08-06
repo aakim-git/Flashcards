@@ -17,7 +17,9 @@ class Header extends React.Component{
 		return(
 			<div id = "header">
 				<ContinueButton />
-				<h1 id="logo">Lango!</h1>
+				<Link to="/review">
+					<h1 id="logo">Lango!</h1>
+				</Link>
 				<div id = "spacer"></div>
 			</div>
 		)
