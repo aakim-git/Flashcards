@@ -62,10 +62,6 @@ class SaveButton extends React.Component{
 class CardCreationBody extends React.Component{
 	constructor(props){
 		super(props);
-		this.TranslateInput = this.TranslateInput.bind(this);
-		this.UpdateFrontText = this.UpdateFrontText.bind(this);
-		this.UpdateBackText = this.UpdateBackText.bind(this);
-		this.SaveCard = this.SaveCard.bind(this);
 
 		this.FrontText = "";
 		this.BackText = "Type a word, and hit ENTER to translate!";
@@ -82,55 +78,6 @@ class CardCreationBody extends React.Component{
 				<SaveButton SaveCard = {this.SaveCard}/>
 			</div>
 		)
-	}
-
-	SaveCard(){
-		var url = "./store?front=" + this.FrontText + "&back=" + this.BackText + "&id=" + User.UserID;
-		
-		var request = $.ajax({
-			type: "POST",
-			url: url,
-			success: 
-				function(data){
-				//NEEDS TO RECIEVE ERROR CODE
-					alert("Card saved!");
-				},
-
-			error:
-				function(error){
-					alert("Error");
-				}
-		});
-		
-	}
-
-	TranslateInput(data) {
-		var url = "./translate?english=" + data;
-		this.UpdateBackText("Translating...");
-		var self = this;
-		var request = $.ajax({
-			type: "GET",
-			dataType: "json",
-			url: url,
-			success: 
-				function(data){
-					self.UpdateBackText(data["translated"]);
-				},
-
-			error:
-				function(error){
-					self.UpdateBackText("Error");
-				}
-		});
-	}
-
-	UpdateFrontText(text){
-		this.FrontText = text;
-	}
-
-	UpdateBackText(data){
-		this.BackText = data;
-		this.forceUpdate();
 	}
 }
 

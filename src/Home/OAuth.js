@@ -13,7 +13,7 @@ var _reactFontawesome = _interopRequireDefault(require("react-fontawesome"));
 
 var _universalCookie = _interopRequireDefault(require("universal-cookie"));
 
-var _google = _interopRequireDefault(require("../public/google.png"));
+var _google = _interopRequireDefault(require("../Assets/google.png"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

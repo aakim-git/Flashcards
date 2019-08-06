@@ -4,7 +4,7 @@ import FontAwesome from 'react-fontawesome'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-import GoogleIcon from '../public/google.png';
+import GoogleIcon from '../Assets/google.png';
 
 export default class OAuth extends React.Component {
 	constructor(props){
