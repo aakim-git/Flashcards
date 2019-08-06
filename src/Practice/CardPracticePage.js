@@ -7,7 +7,13 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _Flashcard = _interopRequireDefault(require("./Flashcard"));
+
+var _reactRouterDom = require("react-router-dom");
+
 require("../CSS/CardPracticePage.css");
+
+var _universalCookie = _interopRequireDefault(require("universal-cookie"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31,117 +37,126 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var cardContainer = document.querySelector('.react-card'); // React component for form inputs
+var cookies = new _universalCookie.default();
+var User = cookies.get('Lingo-Session');
 
-var CardInput =
+var Header =
 /*#__PURE__*/
 function (_React$Component) {
-    _inherits(CardInput, _React$Component);
+    _inherits(Header, _React$Component);
 
-    function CardInput() {
-        _classCallCheck(this, CardInput);
+    function Header(props) {
+        _classCallCheck(this, Header);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(CardInput).apply(this, arguments));
+        return _possibleConstructorReturn(this, _getPrototypeOf(Header).call(this, props));
     }
 
-    _createClass(CardInput, [{
+    _createClass(Header, [{
         key: "render",
         value: function render() {
-            return _react.default.createElement("fieldset", null, _react.default.createElement("input", {
-                name: this.props.name,
-                id: this.props.id,
-                type: this.props.type || 'text',
-                placeholder: this.props.placeholder,
-                required: true
+            return _react.default.createElement("div", {
+                id: "header"
+            }, _react.default.createElement(ContinueButton, null), _react.default.createElement("h1", {
+                id: "logo"
+            }, "Lango!"), _react.default.createElement("div", {
+                id: "spacer"
             }));
         }
     }]);
 
-    return CardInput;
-}(_react.default.Component); // React component for textarea
+    return Header;
+}(_react.default.Component);
 
-
-var CardTextarea =
+var ContinueButton =
 /*#__PURE__*/
 function (_React$Component2) {
-    _inherits(CardTextarea, _React$Component2);
+    _inherits(ContinueButton, _React$Component2);
 
-    function CardTextarea() {
-        _classCallCheck(this, CardTextarea);
+    function ContinueButton(props) {
+        _classCallCheck(this, ContinueButton);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(CardTextarea).apply(this, arguments));
+        return _possibleConstructorReturn(this, _getPrototypeOf(ContinueButton).call(this, props));
     }
 
-    _createClass(CardTextarea, [{
+    _createClass(ContinueButton, [{
         key: "render",
         value: function render() {
-            return _react.default.createElement("fieldset", null, _react.default.createElement("textarea", {
-                name: this.props.name,
-                id: this.props.id,
-                placeholder: this.props.placeholder,
-                required: true
-            }));
+            return _react.default.createElement(_reactRouterDom.Link, {
+                to: "/create"
+            }, _react.default.createElement("button", {
+                type: "button",
+                id: "Start-Create-Button"
+            }, "Create More Cards"));
         }
     }]);
 
-    return CardTextarea;
-}(_react.default.Component); // React component for the front side of the card
+    return ContinueButton;
+}(_react.default.Component); // -------------------------------------------------------------------
 
 
-var CardFront =
+function Footer(props) {
+    return _react.default.createElement("div", {
+        id: "footer"
+    }, " $", User.username, " ");
+} // -------------------------------------------------------------------
+
+
+var NextButton =
 /*#__PURE__*/
 function (_React$Component3) {
-    _inherits(CardFront, _React$Component3);
+    _inherits(NextButton, _React$Component3);
 
-    function CardFront() {
-        _classCallCheck(this, CardFront);
+    function NextButton(props) {
+        var _this;
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(CardFront).apply(this, arguments));
+        _classCallCheck(this, NextButton);
+
+        _this = _possibleConstructorReturn(this, _getPrototypeOf(NextButton).call(this, props));
+        _this.NextCard = _this.NextCard.bind(_assertThisInitialized(_this));
+        return _this;
     }
 
-    _createClass(CardFront, [{
+    _createClass(NextButton, [{
         key: "render",
-        value: function render(props) {
-            return _react.default.createElement("div", {
-                className: "card-side side-front"
-            }, _react.default.createElement("div", {
-                className: "card-side-container"
-            }, _react.default.createElement("h2", {
-                id: "trans"
-            }, this.props.text)));
+        value: function render() {
+            return _react.default.createElement("button", {
+                type: "button",
+                id: "NextButton",
+                onClick: this.NextCard
+            }, "Next");
+        }
+    }, {
+        key: "NextCard",
+        value: function NextCard() {
+            console.log("ohohohoo");
         }
     }]);
 
-    return CardFront;
-}(_react.default.Component); // React component for the back side of the card
+    return NextButton;
+}(_react.default.Component);
 
-
-var CardBack =
+var CardPracticeBody =
 /*#__PURE__*/
 function (_React$Component4) {
-    _inherits(CardBack, _React$Component4);
+    _inherits(CardPracticeBody, _React$Component4);
 
-    function CardBack() {
-        _classCallCheck(this, CardBack);
+    function CardPracticeBody(props) {
+        _classCallCheck(this, CardPracticeBody);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(CardBack).apply(this, arguments));
+        return _possibleConstructorReturn(this, _getPrototypeOf(CardPracticeBody).call(this, props));
     }
 
-    _createClass(CardBack, [{
+    _createClass(CardPracticeBody, [{
         key: "render",
-        value: function render(props) {
+        value: function render() {
             return _react.default.createElement("div", {
-                className: "card-side side-back"
-            }, _react.default.createElement("div", {
-                className: "card-side-container"
-            }, _react.default.createElement("h2", {
-                id: "congrats"
-            }, this.props.text)));
+                id: "body"
+            }, _react.default.createElement(_Flashcard.default, null), _react.default.createElement(NextButton, null));
         }
     }]);
 
-    return CardBack;
-}(_react.default.Component); // React component for the card (main component)
+    return CardPracticeBody;
+}(_react.default.Component); // -------------------------------------------------------------------
 
 
 var Practice =
@@ -149,24 +164,16 @@ var Practice =
 function (_React$Component5) {
     _inherits(Practice, _React$Component5);
 
-    function Practice() {
+    function Practice(props) {
         _classCallCheck(this, Practice);
 
-        return _possibleConstructorReturn(this, _getPrototypeOf(Practice).apply(this, arguments));
+        return _possibleConstructorReturn(this, _getPrototypeOf(Practice).call(this, props));
     }
 
     _createClass(Practice, [{
         key: "render",
         value: function render() {
-            return _react.default.createElement("div", {
-                className: "card-container"
-            }, _react.default.createElement("div", {
-                className: "card-body"
-            }, _react.default.createElement(CardBack, {
-                text: "Correct!"
-            }), _react.default.createElement(CardFront, {
-                text: "Volare"
-            })));
+            return _react.default.createElement("main", null, _react.default.createElement(Header, null), _react.default.createElement(CardPracticeBody, null), _react.default.createElement(Footer, null));
         }
     }]);
 

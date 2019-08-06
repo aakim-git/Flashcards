@@ -187,7 +187,7 @@ function (_React$Component5) {
         value: function render() {
             return _react.default.createElement("button", {
                 type: "button",
-                id: "Save-Button",
+                id: "NextButton",
                 onClick: this.props.SaveCard
             }, "Save");
         }

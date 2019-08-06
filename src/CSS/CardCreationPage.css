@@ -40,10 +40,12 @@ textarea {
     color: white;
 }
 
-#body{
+#body {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; 
+    align-items: center;
+    flex-direction: row;
+    align-content: flex-start;
 }
 
 #Card-View-Pane{
@@ -51,6 +53,7 @@ textarea {
     flex-direction: row;
     justify-content: center;
     flex: 0 1 100%;
+    margin: 0 0 3% 0;
 }
 
 #spacer{
@@ -83,7 +86,7 @@ div.textCard > textarea {
 
 
 #Save-Button{
-    margin: 2% 0 0 108vh;
+    margin: 0 0 0 108vh;
     font-family: helvetica;
     font-size: 10pt;
     border-radius: 7px;
@@ -91,7 +94,7 @@ div.textCard > textarea {
     float: right;
     padding: 1vh 4vh 1vh 4vh;
     border: 1.5px solid #88cbb5;
-    
+    height: 6%;
     color: white;
 }
 

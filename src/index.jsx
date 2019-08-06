@@ -31,17 +31,16 @@ class Main extends React.Component {
 }
 
 function PrivateRoute ({component: Component, ...rest}) {
-  return (
-    <Route
-      {...rest}
-      render=
-		{ 
-		(props) => ( ! cookies.get('Lingo-Session') )
-        ? <Redirect to={{pathname: '/', state: {from: props.location}}} />
-        : <Component {...props} />
-		}
-    />
-  )
+	return (
+		<Route
+			{...rest}
+			render = { 
+				(props) => ( ! cookies.get('Lingo-Session') )
+				? <Redirect to={{pathname: '/', state: {from: props.location}}} />
+				: <Component {...props} />
+			}
+		/>
+	);
 }
 
 ReactDOM.render(<Main />, document.getElementById('root'));

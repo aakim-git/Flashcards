@@ -1,6 +1,11 @@
 import React from 'react';
 import Flashcard from './Flashcard';
+import {Link} from "react-router-dom";
 import '../CSS/CardPracticePage.css';
+
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+let User = cookies.get('Lingo-Session');
 
 class Header extends React.Component{
 	constructor(props){
@@ -25,9 +30,9 @@ class ContinueButton extends React.Component{
 
 	render(){
 		return(
-			<Link to="/practice">
-				<button type = "button" id = "Start-Practice-Button">
-					Start Practicing!
+			<Link to="/create">
+				<button type = "button" id = "Start-Create-Button">
+					Create More Cards
 				</button>
 			</Link>
 		);
@@ -44,38 +49,37 @@ function Footer(props) {
 
 // -------------------------------------------------------------------
 
-class SaveButton extends React.Component{
+class NextButton extends React.Component{
 	constructor(props) {
 		super(props);
+
+		this.NextCard = this.NextCard.bind(this);
 	}
 
 	render(){
 		return(
-			<button type = "button" id = "Save-Button" onClick = {this.props.SaveCard}>
-				Save
+			<button type = "button" id = "NextButton" onClick = {this.NextCard}>
+				Next
 			</button>
 		);
 	}
 
+	NextCard(){
+		console.log("ohohohoo");
+	}
+
 }
 
-class CardCreationBody extends React.Component{
+class CardPracticeBody extends React.Component{
 	constructor(props){
 		super(props);
-
-		this.FrontText = "";
-		this.BackText = "Type a word, and hit ENTER to translate!";
 	}
 
 	render(){
 		return(
 			<div id = "body">
-				<div id = "Card-View-Pane">
-					<FrontCard UpdateFrontText = {this.UpdateFrontText} TranslateInput = {this.TranslateInput} />
-					<div id = "spacer"></div>
-					<BackCard TranslatedText = {this.BackText} />
-				</div>
-				<SaveButton SaveCard = {this.SaveCard}/>
+				<Flashcard />
+				<NextButton />
 			</div>
 		)
 	}
@@ -96,7 +100,7 @@ class Practice extends React.Component{
 		return(
 			<main>
 				<Header />
-				<Flashcard />
+				<CardPracticeBody />
 				<Footer/>
 			</main>
 		)

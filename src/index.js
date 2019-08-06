@@ -90,6 +90,7 @@ function PrivateRoute(_ref) {
     var Component = _ref.component,
         rest = _objectWithoutProperties(_ref, ["component"]);
 
+    console.log("cookies?: " + cookies.get('Lingo-Session'));
     return _react.default.createElement(_reactRouterDom.Route, _extends({}, rest, {
         render: function render(props) {
             return !cookies.get('Lingo-Session') ? _react.default.createElement(_reactRouterDom.Redirect, {
