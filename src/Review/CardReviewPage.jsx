@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {browserHistory} from 'react-router';
 import {Link} from "react-router-dom";
 import $ from 'jquery';
 import '../CSS/CardReviewPage.css';
@@ -17,7 +18,7 @@ class Header extends React.Component{
 			<div id = "header">
 				<ContinueButton ButtonText={this.props.ButtonText}/>
 				<h1 id="logo">Lango!</h1>
-				<div id = "spacer"></div>
+				<LogoutButton />
 			</div>
 		)
 	}
@@ -39,9 +40,7 @@ class ContinueButton extends React.Component{
 	}
 }
 
-// -------------------------------------------------------------------
-
-class Footer extends React.Component{
+class LogoutButton extends React.Component{
 	constructor(props) {
 		super(props);
 		this.logoff = this.logoff.bind(this);
@@ -49,12 +48,29 @@ class Footer extends React.Component{
 
 	logoff(){
 		cookies.remove('Lingo-Session', { path: '/'});
-		console.log("logged off!");
+		browserHistory.push(`/home`);
 	}
 
 	render(){
 		return(
-			<button id = "footer" onClick={this.logoff}> UserName </button>
+			<button type = "button" id = "Logout-Button" onClick={this.logoff}>
+				Logout
+			</button>
+		);
+	}
+}
+
+
+// -------------------------------------------------------------------
+
+class Footer extends React.Component{
+	constructor(props) {
+		super(props);
+	}
+
+	render(){
+		return(
+			<div id = "footer"> UserName </div>
 		);
 	}
 }

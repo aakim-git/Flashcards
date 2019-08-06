@@ -15,10 +15,8 @@ textarea {
     display: flex;
     justify-content: center;  
     align-items:flex-start;
-}
-
-#header > #spacer{
-    width: 40vh;
+    flex-direction: row;
+    margin-bottom: 3%;
 }
 
 #logo{
@@ -27,11 +25,9 @@ textarea {
     font-size: 70pt;
     font-family: 'Raleway', sans-serif;
     color: #606a9b;
+    margin: 0 10% 0 10%;
 }
 
-#spacer{
-    width: 10vh;   
-}
 
 #Start-Create-Button{
     font-family: helvetica;
@@ -41,9 +37,21 @@ textarea {
     padding: 1vh 4vh 1vh 4vh;
     border: 1.5px solid gray;
     
-    margin: 6vh 20vh 0 0;
+    margin: 40% 0 0 0;
     color: white;
 }
+
+#Logout-Button {
+    font-family: helvetica;
+    font-size: 10pt;
+    background-color: #606a9b;
+    border-radius: 5px;
+    padding: 1vh 4vh 1vh 4vh;
+    border: 1.5px solid gray;
+    margin: 2.5% 0 0 0;
+    color: white;
+}
+
 
 
 #footer {

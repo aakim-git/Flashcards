@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {browserHistory} from 'react-router';
 import {Route, BrowserRouter, Switch, Redirect} from "react-router-dom";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
@@ -18,7 +19,7 @@ class Main extends React.Component {
 
 	render() {
 		return(
-			<BrowserRouter>
+			<BrowserRouter history = {browserHistory}>
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<PrivateRoute path="/create" component={Create} />

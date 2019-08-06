@@ -9,6 +9,8 @@ var _react = _interopRequireDefault(require("react"));
 
 var _reactDom = _interopRequireDefault(require("react-dom"));
 
+var _reactRouter = require("react-router");
+
 var _reactRouterDom = require("react-router-dom");
 
 var _jquery = _interopRequireDefault(require("jquery"));
@@ -61,9 +63,7 @@ function (_React$Component) {
                 ButtonText: this.props.ButtonText
             }), _react.default.createElement("h1", {
                 id: "logo"
-            }, "Lango!"), _react.default.createElement("div", {
-                id: "spacer"
-            }));
+            }, "Lango!"), _react.default.createElement(LogoutButton, null));
         }
     }]);
 
@@ -94,38 +94,63 @@ function (_React$Component2) {
     }]);
 
     return ContinueButton;
-}(_react.default.Component); // -------------------------------------------------------------------
+}(_react.default.Component);
 
-
-var Footer =
+var LogoutButton =
 /*#__PURE__*/
 function (_React$Component3) {
-    _inherits(Footer, _React$Component3);
+    _inherits(LogoutButton, _React$Component3);
 
-    function Footer(props) {
+    function LogoutButton(props) {
         var _this;
 
-        _classCallCheck(this, Footer);
+        _classCallCheck(this, LogoutButton);
 
-        _this = _possibleConstructorReturn(this, _getPrototypeOf(Footer).call(this, props));
+        _this = _possibleConstructorReturn(this, _getPrototypeOf(LogoutButton).call(this, props));
         _this.logoff = _this.logoff.bind(_assertThisInitialized(_this));
         return _this;
     }
 
-    _createClass(Footer, [{
+    _createClass(LogoutButton, [{
         key: "logoff",
         value: function logoff() {
             cookies.remove('Lingo-Session', {
                 path: '/'
             });
-            console.log("logged off!");
+
+            _reactRouter.browserHistory.push("/home");
         }
     }, {
         key: "render",
         value: function render() {
             return _react.default.createElement("button", {
-                id: "footer",
+                type: "button",
+                id: "Logout-Button",
                 onClick: this.logoff
+            }, "Logout");
+        }
+    }]);
+
+    return LogoutButton;
+}(_react.default.Component); // -------------------------------------------------------------------
+
+
+var Footer =
+/*#__PURE__*/
+function (_React$Component4) {
+    _inherits(Footer, _React$Component4);
+
+    function Footer(props) {
+        _classCallCheck(this, Footer);
+
+        return _possibleConstructorReturn(this, _getPrototypeOf(Footer).call(this, props));
+    }
+
+    _createClass(Footer, [{
+        key: "render",
+        value: function render() {
+            return _react.default.createElement("div", {
+                id: "footer"
             }, " UserName ");
         }
     }]);
@@ -135,8 +160,8 @@ function (_React$Component3) {
 
 var Review =
 /*#__PURE__*/
-function (_React$Component4) {
-    _inherits(Review, _React$Component4);
+function (_React$Component5) {
+    _inherits(Review, _React$Component5);
 
     function Review(props) {
         var _this2;
