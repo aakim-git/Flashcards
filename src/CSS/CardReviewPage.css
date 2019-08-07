@@ -11,44 +11,53 @@ textarea {
     border: none;
 }
 
-#header{
+#header {
     display: flex;
-    justify-content: center;  
-    align-items:flex-start;
+    align-items: center;
     flex-direction: row;
-    margin-bottom: 3%;
 }
 
-#logo{
+#logo {
     text-align: center;
     align-items: center;
-    font-size: 70pt;
+    font-size: 50pt;
     font-family: 'Raleway', sans-serif;
     color: #606a9b;
-    margin: 0 10% 0 10%;
+    flex-basis: 33.3%;
 }
 
 
-#Start-Create-Button{
-    font-family: helvetica;
-    font-size: 10pt;
+#Start-Create-Button {
+    flex-basis: 33.3%;
+    display: flex;
+    justify-content: center;
+}
+
+#Start-Create-Button > button {
     background-color: #606a9b;
     border-radius: 5px;
-    padding: 1vh 4vh 1vh 4vh;
     border: 1.5px solid gray;
-    
-    margin: 40% 0 0 0;
     color: white;
+    
+    padding: 1vh 4vh 1vh 4vh;
+    font-family: helvetica;
+    font-size: 10pt;
 }
 
 #Logout-Button {
+    flex-basis: 33.3%;
+    display: flex;
+    justify-content: center;
+}
+
+
+#Logout-Button > button {
     font-family: helvetica;
     font-size: 10pt;
     background-color: #606a9b;
     border-radius: 5px;
     padding: 1vh 4vh 1vh 4vh;
     border: 1.5px solid gray;
-    margin: 2.5% 0 0 0;
     color: white;
 }
 

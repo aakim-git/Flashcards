@@ -59,7 +59,8 @@ function (_React$Component) {
             return _react.default.createElement("div", {
                 id: "header"
             }, _react.default.createElement(ContinueButton, null), _react.default.createElement(_reactRouterDom.Link, {
-                to: "/review"
+                to: "/review",
+                id: "logo-container"
             }, _react.default.createElement("h1", {
                 id: "logo"
             }, "Lango!")), _react.default.createElement("div", {
@@ -86,11 +87,11 @@ function (_React$Component2) {
         key: "render",
         value: function render() {
             return _react.default.createElement(_reactRouterDom.Link, {
-                to: "/create"
-            }, _react.default.createElement("button", {
-                type: "button",
+                to: "/create",
                 id: "Start-Create-Button"
-            }, "Create More Cards"));
+            }, _react.default.createElement("button", {
+                type: "button"
+            }, "Add"));
         }
     }]);
 

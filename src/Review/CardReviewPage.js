@@ -85,10 +85,10 @@ function (_React$Component2) {
         key: "render",
         value: function render() {
             return _react.default.createElement(_reactRouterDom.Link, {
-                to: "/create"
-            }, _react.default.createElement("button", {
-                type: "button",
+                to: "/create",
                 id: "Start-Create-Button"
+            }, _react.default.createElement("button", {
+                type: "button"
             }, this.props.ButtonText));
         }
     }]);
@@ -123,11 +123,12 @@ function (_React$Component3) {
     }, {
         key: "render",
         value: function render() {
-            return _react.default.createElement("button", {
+            return _react.default.createElement("div", {
+                id: "Logout-Button"
+            }, _react.default.createElement("button", {
                 type: "button",
-                id: "Logout-Button",
                 onClick: this.logoff
-            }, "Logout");
+            }, "Logout"));
         }
     }]);
 

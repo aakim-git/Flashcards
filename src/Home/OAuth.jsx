@@ -30,7 +30,7 @@ export default class OAuth extends React.Component {
 		socket.on(provider, user => {  
 			this.popup.close();
 			var date = new Date();
-			date.setMinutes(date.getSeconds() + 30 );
+			date.setMinutes(date.getMinutes() + 30 );
 			cookies.set('Lingo-Session', {UserID: user.id}, { path: '/', expires: date});
 			window.location.replace('/review');
 		});

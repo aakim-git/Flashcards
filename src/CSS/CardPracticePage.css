@@ -32,12 +32,17 @@ textarea {
 
 #header {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    align-items: center;
+    flex-direction: row;
 }
 
 #header > #spacer {
-    width: 40vh;
+   flex-basis: 33.3%;
+}
+
+
+#logo-container {
+    flex-basis: 33.3%;
 }
 
 #logo {
@@ -48,15 +53,20 @@ textarea {
     color: #606a9b;
 }
 
-#Start-Practice-Button {
-    font-family: helvetica;
-    font-size: 10pt;
+#Start-Create-Button {
+    flex-basis: 33.3%;
+    display: flex;
+    justify-content: center;
+}
+
+#Start-Create-Button > button {
     background-color: #606a9b;
     border-radius: 5px;
-    padding: 1vh 4vh 1vh 4vh;
     border: 1.5px solid gray;
-    margin: 11vh 20vh 0 0;
     color: white;
+    padding: 1vh 4vh 1vh 4vh;
+    font-family: helvetica;
+    font-size: 10pt;
 }
 
 

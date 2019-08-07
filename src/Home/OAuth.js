@@ -75,7 +75,7 @@ function (_React$Component) {
                 _this2.popup.close();
 
                 var date = new Date();
-                date.setMinutes(date.getSeconds() + 30);
+                date.setMinutes(date.getMinutes() + 30);
                 cookies.set('Lingo-Session', {
                     UserID: user.id
                 }, {

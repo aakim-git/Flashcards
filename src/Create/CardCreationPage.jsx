@@ -17,7 +17,7 @@ class Header extends React.Component{
 		return(
 			<div id = "header">
 				<ContinueButton />
-				<Link to="/review">
+				<Link to="/review" id = "logo-container">
 					<h1 id="logo">Lango!</h1>
 				</Link>
 				<div id = "spacer"></div>
@@ -33,9 +33,9 @@ class ContinueButton extends React.Component{
 
 	render(){
 		return(
-			<Link to="/practice">
-				<button type = "button" id = "Start-Practice-Button">
-					Start Practicing!
+			<Link to="/practice" id = "Start-Practice-Button">
+				<button type = "button">
+					Practice
 				</button>
 			</Link>
 		);

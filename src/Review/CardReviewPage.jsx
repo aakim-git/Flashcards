@@ -31,8 +31,8 @@ class ContinueButton extends React.Component{
 
 	render(){
 		return(
-			<Link to="/create">
-				<button type = "button" id = "Start-Create-Button">
+			<Link to="/create" id = "Start-Create-Button">
+				<button type = "button">
 					{this.props.ButtonText}
 				</button>
 			</Link>
@@ -53,9 +53,11 @@ class LogoutButton extends React.Component{
 
 	render(){
 		return(
-			<button type = "button" id = "Logout-Button" onClick={this.logoff}>
-				Logout
-			</button>
+			<div id = "Logout-Button">
+				<button type = "button" onClick={this.logoff}>
+					Logout
+				</button>
+			</div>
 		);
 	}
 }
