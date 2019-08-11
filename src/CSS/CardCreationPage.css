@@ -91,14 +91,14 @@ div.textCard > textarea {
     height:auto;
     max-height: 34vh;
     overflow: auto;
-    resize: none
+    height: auto;
+    width: 100%;
+    text-align:center;
 
 }
 
-
-
 #Save-Button{
-    margin: 0 0 0 108vh;
+    margin: 0 0 0 74%;
     font-family: helvetica;
     font-size: 10pt;
     border-radius: 7px;

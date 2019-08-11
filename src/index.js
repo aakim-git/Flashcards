@@ -18,8 +18,6 @@ var _CardReviewPage = _interopRequireDefault(require("./Review/CardReviewPage"))
 
 var _CardPracticePage = _interopRequireDefault(require("./Practice/CardPracticePage"));
 
-var _Login = _interopRequireDefault(require("./Home/Login"));
-
 var serviceWorker = _interopRequireWildcard(require("./serviceWorker"));
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }

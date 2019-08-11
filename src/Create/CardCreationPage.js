@@ -100,7 +100,7 @@ function (_React$Component2) {
 function Footer(props) {
     return _react.default.createElement("div", {
         id: "footer"
-    }, " $", User.username, " ");
+    }, User.Username);
 } // -------------------------------------------------------------------
 
 
@@ -115,7 +115,8 @@ function (_React$Component3) {
         _classCallCheck(this, FrontCard);
 
         _this = _possibleConstructorReturn(this, _getPrototypeOf(FrontCard).call(this, props));
-        _this.checkReturn = _this.checkReturn.bind(_assertThisInitialized(_this));
+        _this.CheckReturn = _this.CheckReturn.bind(_assertThisInitialized(_this));
+        _this.TextAreaResize = _this.TextAreaResize.bind(_assertThisInitialized(_this));
         _this.UpdateFrontText = _this.UpdateFrontText.bind(_assertThisInitialized(_this));
         _this.TextArea = _react.default.createRef();
         return _this;
@@ -128,10 +129,17 @@ function (_React$Component3) {
                 className: "textCard",
                 id: "FrontCard"
             }, _react.default.createElement("textarea", {
-                onKeyPress: this.checkReturn,
+                onKeyPress: this.CheckReturn,
                 onKeyUp: this.UpdateFrontText,
+                onChange: this.TextAreaResize,
                 ref: this.TextArea
             }));
+        }
+    }, {
+        key: "TextAreaResize",
+        value: function TextAreaResize() {
+            this.TextArea.current.style.height = 'auto';
+            this.TextArea.current.style.height = this.TextArea.current.scrollHeight + 'px';
         }
     }, {
         key: "UpdateFrontText",
@@ -139,8 +147,8 @@ function (_React$Component3) {
             this.props.UpdateFrontText(this.TextArea.current.value);
         }
     }, {
-        key: "checkReturn",
-        value: function checkReturn(event) {
+        key: "CheckReturn",
+        value: function CheckReturn(event) {
             if (event.charCode == 13) {
                 this.props.TranslateInput(this.TextArea.current.value);
             }

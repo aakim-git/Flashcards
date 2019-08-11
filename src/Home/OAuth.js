@@ -77,7 +77,8 @@ function (_React$Component) {
                 var date = new Date();
                 date.setMinutes(date.getMinutes() + 30);
                 cookies.set('Lingo-Session', {
-                    UserID: user.id
+                    UserID: user.id,
+                    Username: user.username
                 }, {
                     path: '/',
                     expires: date

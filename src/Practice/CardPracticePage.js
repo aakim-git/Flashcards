@@ -102,7 +102,7 @@ function (_React$Component2) {
 function Footer(props) {
     return _react.default.createElement("div", {
         id: "footer"
-    }, " $", User.username, " ");
+    }, " ", User.Username, " ");
 } // -------------------------------------------------------------------
 
 

@@ -31,7 +31,7 @@ export default class OAuth extends React.Component {
 			this.popup.close();
 			var date = new Date();
 			date.setMinutes(date.getMinutes() + 30 );
-			cookies.set('Lingo-Session', {UserID: user.id}, { path: '/', expires: date});
+			cookies.set('Lingo-Session', {UserID: user.id, Username: user.username}, { path: '/', expires: date});
 			window.location.replace('/review');
 		});
 	}

@@ -42,6 +42,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 var cookies = new _universalCookie.default();
+var User = cookies.get('Lingo-Session');
 
 var Header =
 /*#__PURE__*/
@@ -150,9 +151,10 @@ function (_React$Component4) {
     _createClass(Footer, [{
         key: "render",
         value: function render() {
+            console.log(User.Username);
             return _react.default.createElement("div", {
                 id: "footer"
-            }, " UserName ");
+            }, " ", User.Username, " ");
         }
     }]);
 

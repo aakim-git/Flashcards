@@ -7,6 +7,7 @@ import '../CSS/CardReviewPage.css';
 
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
+let User = cookies.get('Lingo-Session');
 
 class Header extends React.Component{
 	constructor(props){
@@ -71,8 +72,9 @@ class Footer extends React.Component{
 	}
 
 	render(){
+		console.log(User.Username);
 		return(
-			<div id = "footer"> UserName </div>
+			<div id = "footer"> {User.Username} </div>
 		);
 	}
 }

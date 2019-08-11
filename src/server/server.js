@@ -77,8 +77,10 @@ router.get("/login/google/callback",
     passport.authenticate("google", { failureRedirect: "/", session: false }),
     function (req, res) {
         const io = req.app.get('io');
+        console.log(req.user);
         const user = {
-            id: req.user.id
+            id: req.user.id,
+            username: req.user.displayName
         };  
         io.in(req.session.socketId).emit('google', user);
 
@@ -108,7 +110,7 @@ router.use(function (req, res, next) {
 });
 
 router.get('/login/google',
-    passport.authenticate('google', {scope:['email']})
+    passport.authenticate('google', {scope:['email', 'profile']})
 );
 
 
@@ -143,7 +145,7 @@ app.post('/store*', function (req, res) {
 });
 
 
-// Translate Request
+// Translate scop
 app.get('/translate*', function(req,res){
     let Original = req.query.english;
 
@@ -194,7 +196,6 @@ app.get('/api/getcards*', function (req, res) {
             throw err;
         }
 
-        console.log(rows);
         res.send(rows);
     });
 

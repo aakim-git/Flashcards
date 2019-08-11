@@ -46,7 +46,7 @@ class ContinueButton extends React.Component{
 
 function Footer(props) {
 	return(
-		<div id = "footer"> ${User.username} </div>
+		<div id = "footer">{User.Username}</div>
     );
 }
 
@@ -55,7 +55,8 @@ function Footer(props) {
 class FrontCard extends React.Component{
 	constructor(props) {
 		super(props);
-		this.checkReturn = this.checkReturn.bind(this);
+		this.CheckReturn = this.CheckReturn.bind(this);
+		this.TextAreaResize = this.TextAreaResize.bind(this);
 		this.UpdateFrontText = this.UpdateFrontText.bind(this);
 
 		this.TextArea = React.createRef();
@@ -64,16 +65,26 @@ class FrontCard extends React.Component{
 	render(){
 		return(
 			<div className="textCard" id="FrontCard">
-				<textarea onKeyPress={this.checkReturn} onKeyUp={this.UpdateFrontText} ref = {this.TextArea}/>
+				<textarea 
+					onKeyPress={this.CheckReturn} 
+					onKeyUp={this.UpdateFrontText} 
+					onChange={this.TextAreaResize}
+					ref = {this.TextArea}
+				/>
 			</div>
 		);
+	}
+
+	TextAreaResize(){
+		this.TextArea.current.style.height = 'auto';
+		this.TextArea.current.style.height = this.TextArea.current.scrollHeight + 'px';
 	}
 
 	UpdateFrontText(){
 		this.props.UpdateFrontText(this.TextArea.current.value);
 	}
 
-	checkReturn(event) {
+	CheckReturn(event) {
 		if(event.charCode == 13){
 			this.props.TranslateInput(this.TextArea.current.value);
 		}

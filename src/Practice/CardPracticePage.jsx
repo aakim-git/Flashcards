@@ -46,7 +46,7 @@ class ContinueButton extends React.Component{
 
 function Footer(props) {
 	return(
-		<div id = "footer"> ${User.username} </div>
+		<div id = "footer"> {User.Username} </div>
     );
 }
 

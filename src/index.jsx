@@ -9,7 +9,6 @@ import Home from './Home/Home';
 import Create from './Create/CardCreationPage';
 import Review from './Review/CardReviewPage';
 import Practice from './Practice/CardPracticePage';
-import Login from './Home/Login';
 import * as serviceWorker from './serviceWorker';
 
 class Main extends React.Component {
