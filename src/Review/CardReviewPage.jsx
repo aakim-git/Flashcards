@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {browserHistory} from 'react-router';
 import {Link} from "react-router-dom";
 import $ from 'jquery';
@@ -10,10 +9,6 @@ const cookies = new Cookies();
 let User = cookies.get('Lingo-Session');
 
 class Header extends React.Component{
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		return(
 			<div id = "header">
@@ -26,10 +21,6 @@ class Header extends React.Component{
 }
 
 class ContinueButton extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
 	render(){
 		return(
 			<Link to="/create" id = "Start-Create-Button">
@@ -67,10 +58,6 @@ class LogoutButton extends React.Component{
 // -------------------------------------------------------------------
 
 class Footer extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
 	render(){
 		console.log(User.Username);
 		return(
@@ -87,10 +74,9 @@ class Review extends React.Component{
 	}
 
 	componentDidMount() {
-		console.log("loading cards...");
 		var User = cookies.get('Lingo-Session');
 		var url = "/api/getcards?id=" + User.UserID;
-		var request = $.ajax({
+		$.ajax({
 			type: "GET",
 			url: url,
 			success: 

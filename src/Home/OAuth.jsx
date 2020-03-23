@@ -1,10 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import FontAwesome from 'react-fontawesome'
 import Cookies from 'universal-cookie';
-const cookies = new Cookies();
-
 import GoogleIcon from '../Assets/google.png';
+
+const cookies = new Cookies();
 
 export default class OAuth extends React.Component {
 	constructor(props){
@@ -39,7 +37,7 @@ export default class OAuth extends React.Component {
 	// if popup is not currently opened,
 	// launchPopup. Then, begin checkPopup.  
 	startAuth(){
-		if (this.state.popup_open == false) {
+		if (this.state.popup_open === false) {
 			this.popup = this.launchPopup();
 			this.checkPopup();
 			this.setState({popup_open: true});
@@ -86,13 +84,9 @@ export default class OAuth extends React.Component {
 	}
 
 	render() {
-		const name = this.state.user;
-		const provider = this.props.provider;
-		const disabled = this.state.popup_open;
-    
 		return (
 			<button onClick={this.startAuth}>
-				<img src={GoogleIcon} id="GoogleIcon"/>
+				<img src={GoogleIcon} id="GoogleIcon" alt="Google Icon"/>
 				Log in with Google
 			</button>
 		);

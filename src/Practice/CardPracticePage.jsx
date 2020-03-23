@@ -3,16 +3,12 @@ import Flashcard from './Flashcard';
 import {Link} from "react-router-dom";
 import $ from 'jquery';
 import '../CSS/CardPracticePage.css';
-
 import Cookies from 'universal-cookie';
+
 const cookies = new Cookies();
 let User = cookies.get('Lingo-Session');
 
 class Header extends React.Component{
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		return(
 			<div id = "header">
@@ -27,10 +23,6 @@ class Header extends React.Component{
 }
 
 class ContinueButton extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
 	render(){
 		return(
 			<Link to="/create" id = "Start-Create-Button">
@@ -53,10 +45,6 @@ function Footer(props) {
 // -------------------------------------------------------------------
 
 class NextButton extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
 	render(){
 		return(
 			<button type = "button" id = "NextButton" onClick = {this.props.NextCard}>
@@ -70,9 +58,8 @@ class NextButton extends React.Component{
 class CardPracticeBody extends React.Component{
 	constructor(props){
 		super(props);
-
+        
 		this.NextCard = this.NextCard.bind(this);
-
 		this.curFront = "";
 		this.curBack = "";
 		this.cards = null;
@@ -81,7 +68,7 @@ class CardPracticeBody extends React.Component{
 	componentDidMount(){
 		var User = cookies.get('Lingo-Session');
 		var url = "/api/getcards?id=" + User.UserID;
-		var request = $.ajax({
+		$.ajax({
 			type: "GET",
 			url: url,
 			success: 
@@ -119,10 +106,6 @@ class CardPracticeBody extends React.Component{
 
 	  
 class Practice extends React.Component{
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		return(
 			<main>
@@ -132,8 +115,6 @@ class Practice extends React.Component{
 			</main>
 		)
 	}
-
-
 }
 
 export default Practice;

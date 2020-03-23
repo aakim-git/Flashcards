@@ -9,10 +9,6 @@ let User = cookies.get('Lingo-Session');
 // -------------------------------------------------------------------
 
 class Header extends React.Component{
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		return(
 			<div id = "header">
@@ -27,10 +23,6 @@ class Header extends React.Component{
 }
 
 class ContinueButton extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
 	render(){
 		return(
 			<Link to="/practice" id = "Start-Practice-Button">
@@ -85,17 +77,13 @@ class FrontCard extends React.Component{
 	}
 
 	CheckReturn(event) {
-		if(event.charCode == 13){
+		if(event.charCode === 13){
 			this.props.TranslateInput(this.TextArea.current.value);
 		}
 	}
 }
 
 class BackCard extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
 	render(){
 		return(
 			<div className="textCard" id = "BackCard">
@@ -106,10 +94,6 @@ class BackCard extends React.Component{
 }
 
 class SaveButton extends React.Component{
-	constructor(props) {
-		super(props);
-	}
-
 	render(){
 		return(
 			<button type = "button" id = "Save-Button" onClick = {this.props.SaveCard}>
@@ -148,12 +132,11 @@ class CardCreationBody extends React.Component{
 	SaveCard(){
 		var url = "./store?front=" + this.FrontText + "&back=" + this.BackText + "&id=" + User.UserID;
 		
-		var request = $.ajax({
+		$.ajax({
 			type: "POST",
 			url: url,
 			success: 
 				function(data){
-				//NEEDS TO RECIEVE ERROR CODE
 					alert("Card saved!");
 				},
 
@@ -169,7 +152,7 @@ class CardCreationBody extends React.Component{
 		var url = "./translate?english=" + data;
 		this.UpdateBackText("Translating...");
 		var self = this;
-		var request = $.ajax({
+		$.ajax({
 			type: "GET",
 			dataType: "json",
 			url: url,
@@ -202,10 +185,6 @@ class CardCreationBody extends React.Component{
 
 	  
 class Create extends React.Component{
-	constructor(props){
-		super(props);
-	}
-
 	render(){
 		return(
 			<main>

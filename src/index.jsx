@@ -3,19 +3,15 @@ import ReactDOM from 'react-dom';
 import {browserHistory} from 'react-router';
 import {Route, BrowserRouter, Switch, Redirect} from "react-router-dom";
 import Cookies from 'universal-cookie';
-const cookies = new Cookies();
-
 import Home from './Home/Home';
 import Create from './Create/CardCreationPage';
 import Review from './Review/CardReviewPage';
 import Practice from './Practice/CardPracticePage';
 import * as serviceWorker from './serviceWorker';
 
-class Main extends React.Component {
-	constructor(props){
-		super(props);
-	}
+const cookies = new Cookies();
 
+class Main extends React.Component {
 	render() {
 		return(
 			<BrowserRouter history = {browserHistory}>
