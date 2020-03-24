@@ -1,0 +1,29 @@
+html {
+  overflow-y: scroll;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 100%;
+}
+
+textarea:focus {
+    outline: none;
+}
+
+textarea {
+    border: none;
+    resize: none;
+}
+
+#body {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+    align-content: flex-start;
+}

@@ -1,5 +1,4 @@
 import React from 'react';
-import {browserHistory} from 'react-router';
 import {Link} from "react-router-dom";
 import $ from 'jquery';
 import '../CSS/CardReviewPage.css';
@@ -23,7 +22,7 @@ class Header extends React.Component{
 class ContinueButton extends React.Component{
 	render(){
 		return(
-			<Link to="/create" id = "Start-Create-Button">
+			<Link to="/create" class = "Transition-Button">
 				<button type = "button">
 					{this.props.ButtonText}
 				</button>
@@ -40,12 +39,12 @@ class LogoutButton extends React.Component{
 
 	logoff(){
 		cookies.remove('Lingo-Session', { path: '/'});
-		browserHistory.push(`/home`);
+        window.location.replace('/');
 	}
 
 	render(){
 		return(
-			<div id = "Logout-Button">
+            <div class = "Transition-Button">
 				<button type = "button" onClick={this.logoff}>
 					Logout
 				</button>
@@ -59,7 +58,6 @@ class LogoutButton extends React.Component{
 
 class Footer extends React.Component{
 	render(){
-		console.log(User.Username);
 		return(
 			<div id = "footer"> {User.Username} </div>
 		);
@@ -70,10 +68,14 @@ class Footer extends React.Component{
 class Review extends React.Component{
 	constructor(props) {
 		super(props);
-		this.state = {cards: []};
+        this.DeleteCard = this.DeleteCard.bind(this);
+		this.state = {
+            cards: []
+        };
 	}
 
 	componentDidMount() {
+        // Load flashcards from database
 		var User = cookies.get('Lingo-Session');
 		var url = "/api/getcards?id=" + User.UserID;
 		$.ajax({
@@ -82,32 +84,50 @@ class Review extends React.Component{
 			success: 
 				(data) => {
 					this.setState({cards: data});
-					console.log("got cards");
 				}
 		});
 	}
 
+    DeleteCard(card){
+        var User = cookies.get('Lingo-Session');        
+        var url = "./DeleteCard?front=" + card.side1 + "&back=" + card.side2 + "&id=" + User.UserID;
+        $.ajax({
+            type: "DELETE",
+            url: url,
+            success: 
+                (data) => {
+                    this.setState({cards: data});
+                },
+            
+            error: 
+                (error) => {
+                    console.log(error);
+                }
+        });
+    }
+
 	render(){
+        let ReviewBody;
+        if(this.state.cards.length === 0){
+            ReviewBody = "You have no flashcards yet!"
+        }
+        else {
+            ReviewBody = 
+                this.state.cards.map(card => (
+                    <div class = "entry">
+                        <div class = "side1"> {card.side1} </div>
+                        <div class = "side2"> {card.side2} </div>
+                        <button onClick = {this.DeleteCard.bind(this,card)}> Delete </button>
+                    </div>
+                ))
+        }
+        
 		return(
 			<div>
-				<Header ButtonText="Add"/>
-				<div id = "ReviewList">
-					{
-						((rows, i, len) => {
-							while(i < len){
-								rows.push(
-									<div class = "entry">
-										<div class = "side1"> {this.state.cards[i].side1} </div>
-										<div class = "side2"> {this.state.cards[i].side2} </div>
-									</div>
-								);
-								i++;
-							}
-							rows.push(<div class = "spacer"></div>)
-							return rows;
-						})([], 0, this.state.cards.length)
-					}
-				</div>
+				<Header ButtonText="Create"/>
+                <div id = "ReviewList">
+                    {ReviewBody}
+                </div>
 				<Footer/>
 			</div>
 		);

@@ -1,11 +1,12 @@
 import React from "react";
 import '../CSS/Home.css';
 import io from 'socket.io-client';
+import {browserHistory} from 'react-router';
 import OAuth from './OAuth';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
-// initializes socket for authentication
+// initializes socket used for authentication
 const socket = io("http://localhost:8080"); 
 // -------------------------------------------------------------------
 
@@ -28,21 +29,45 @@ class LoginPanel extends React.Component{
 					provider='google'
 					socket={socket}
 				/>
+                <GuestLoginButton />
 			</div>
 		);
 	}
-
 }
+
+class GuestLoginButton extends React.Component{
+    constructor(props) {
+		super(props);
+		this.CreateGuestSession = this.CreateGuestSession.bind(this);
+	}
+    
+    CreateGuestSession(){
+        var date = new Date();
+        date.setMinutes(date.getMinutes() + 30 );
+        cookies.set('Lingo-Session', {UserID: -1, Username: "Guest"}, { path: '/', expires: date});
+        window.location.replace('/review');
+    }
+    
+	render(){
+		return(
+			<div id = "Guest-Login-Button">
+				<button type = "button" onClick={this.CreateGuestSession}>
+					Login as Guest
+				</button>
+			</div>
+		);
+	}
+}
+
 
 class Home extends React.Component{
 	componentDidMount() {
 		if (cookies.get('Lingo-Session')){
-			this.props.history.push('review');
+			browserHistory.push('/review');
 		}
 	}
 
 	render(){
-		// if user is logged in, should redirect to card_review_page
 		return(
 			<div id = "body">
 				<Title />

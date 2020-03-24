@@ -1,0 +1,45 @@
+#header {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+#header > #spacer {
+    flex-basis: 33.3%;
+}
+
+#logo {
+    text-align: center;
+    align-items: center;
+    font-size: 50pt;
+    font-family: 'Raleway', sans-serif;
+    color: #606a9b;
+    flex-basis: 33.3%;
+}
+
+#logo-container {
+    flex-basis: 33.3%;
+}
+
+a {
+    flex-basis: 33.3%;
+}
+
+.Transition-Button {
+    flex-basis: 33.3%;
+    display: flex;
+    justify-content: center;
+}
+
+.Transition-Button > button {
+    background-color: #606a9b;
+    border-radius: 5px;
+    border: 1.5px solid gray;
+    width: 15vh;
+    height: 5vh;
+    
+    color: white;
+    font-family: helvetica;
+    text-align: center;
+    font-size: 10pt;
+}

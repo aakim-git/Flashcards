@@ -1,15 +1,5 @@
-html {
-    font-size: 16px;
-}
-
-a {
-    text-decoration: none;
-}
-
-body {
-    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 100%;
-}
+@import 'Header.css';
+@import 'Footer.css';
 
 #CardPracticeBody {
     margin: auto;
@@ -18,92 +8,18 @@ body {
     align-items: center;
     flex-direction: row;
     align-content: flex-start;
+    justify-content: center;
     width: 50%;
 }
 
-
-textarea:focus {
-    outline: none;
-}
-
-textarea {
-    border: none;
-}
-
-#header {
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-}
-
-#header > #spacer {
-   flex-basis: 33.3%;
-}
-
-
-#logo-container {
-    flex-basis: 33.3%;
-}
-
-#logo {
-    text-align: center;
-    align-items: center;
-    font-size: 50pt;
-    font-family: 'Raleway', sans-serif;
-    color: #606a9b;
-}
-
-#Start-Create-Button {
-    flex-basis: 33.3%;
-    display: flex;
-    justify-content: center;
-}
-
-#Start-Create-Button > button {
-    background-color: #606a9b;
-    border-radius: 5px;
-    border: 1.5px solid gray;
-    color: white;
-    padding: 1vh 4vh 1vh 4vh;
-    font-family: helvetica;
-    font-size: 10pt;
-}
-
-
 .card-container {
     z-index: 1;
-    max-width: 720px;
+    max-width: 55vh;
     -webkit-perspective: 1000px;
     perspective: 1000px;
-    height: 50vh;
+    height: 40vh;
     flex: 0 1 100%;
     margin: 0 0 3% 0;
-}
-
-#NextButton {
-    margin: 2% 0 0 88%;
-    font-family: helvetica;
-    font-size: 10pt;
-    border-radius: 7px;
-    background: #71c7aa;
-    float: right;
-    padding: 1vh 4vh 1vh 4vh;
-    border: 1.5px solid #88cbb5;
-    color: white;
-}
-
-#footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    font-family: helvetica;
-    color: white;
-    height: 5%;
-    border-top: 1.5px solid gray;
-    background-color: #606a9b;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .card-container > h1,
@@ -164,7 +80,10 @@ textarea {
     background-color: #fff;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    box-shadow: 0 10px 35px rgba(50, 50, 93, 0.1), 0 2px 15px rgba(0, 0, 0, 0.07);
+    
+    border-style: solid;
+    border-width: 2px;
+    border-color: gray;
 }
 
 .side-back {
@@ -211,3 +130,15 @@ textarea {
     box-shadow: 0 18px 35px rgba(50, 50, 93, 0.1), 0 8px 15px rgba(0, 0, 0, 0.07);
 }
 
+
+#NextButton {
+    margin: 2% 0 0 88%;
+    font-family: helvetica;
+    font-size: 10pt;
+    border-radius: 7px;
+    background: #71c7aa;
+    float: right;
+    padding: 1vh 4vh 1vh 4vh;
+    border: 1.5px solid #88cbb5;
+    color: white;
+}

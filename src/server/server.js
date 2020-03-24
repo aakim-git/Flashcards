@@ -71,13 +71,11 @@ server.listen(port, function () {
 
 //---------------------------------------------------------------
 
-// on successful login...
-//  create and store user object
+// on successful login, create and store user object
 router.get("/login/google/callback",
     passport.authenticate("google", { failureRedirect: "/", session: false }),
     function (req, res) {
         const io = req.app.get('io');
-        console.log(req.user);
         const user = {
             id: req.user.id,
             username: req.user.displayName
@@ -88,15 +86,16 @@ router.get("/login/google/callback",
             if(rows == undefined){
                 db.run(`INSERT INTO Users ('UserID', 'UserName')
                     VALUES (${req.user.id}, '${req.user.username}')`,
-                        function (err) {
-                            if (err) {
-                                console.log("Error", err);
-                            }
+                    function (err) {
+                        if (err) {
+                            console.log("Error", err);
+                        }
 
-                            else {
-                                console.log("Created new user");
-                            }
-                        });
+                        else {
+                            console.log("Created new user");
+                        }
+                    }
+                );
             }
         });
 
@@ -113,9 +112,11 @@ router.get('/login/google',
     passport.authenticate('google', {scope:['email', 'profile']})
 );
 
-
-
 app.use('/', router);
+
+
+
+
 
 // check if user is authenticated or not
 app.get('/API/isauthorized', function (req, res) {
@@ -131,21 +132,57 @@ app.get('/API/isauthorized', function (req, res) {
 // Store flashcard
 app.post('/store*', function (req, res) {
     db.run(`INSERT INTO FlashCards (UserID, side1, side2)
-            VALUES (${req.query.id}, '${req.query.front}', '${req.query.back}') `,
-            function (err) {
-                // MAKE IT SEND ERROR CODE
-                if (err) {
-                    res.send("Error");
-                }
+            VALUES (${req.query.id}, '${req.query.front}', '${req.query.back}')`,
+        function (err) {
+            if (err) {
+                console.log("Error", err);
+            }
 
-                else {
-
-                }
-            });
+            else {
+                console.log("Stored Flashcard successfully");
+                res.sendStatus(200);
+            }
+        }
+    );
 });
 
+// Store flashcard
+app.delete('/DeleteCard*', function (req, res) {
+    db.run(`DELETE FROM FlashCards 
+            WHERE UserID = ${req.query.id} AND side1 = '${req.query.front}'
+            AND side2 = '${req.query.back}'`,
+        function (err) {
+            if (err) {
+                throw err;
+            }
 
-// Translate scop
+            else {
+                db.all(`SELECT * FROM FlashCards WHERE UserID = ${req.query.id}`, [], (err, rows) => {
+                    if (err) {
+                        throw err;
+                    }
+
+                    res.send(rows);
+                });
+            }
+        }
+    )
+});
+
+// Return cards for a user
+app.get('/api/getcards*', function (req, res) {
+    var UserID = req.query.id;
+
+    db.all(`SELECT * FROM FlashCards WHERE UserID = ${UserID}`, [], (err, rows) => {
+        if (err) {
+            throw err;
+        }
+
+        res.send(rows);
+    });
+});
+
+// Ask Google Translate API to process word. 
 app.get('/translate*', function(req,res){
     let Original = req.query.english;
 
@@ -185,18 +222,4 @@ app.get('/translate*', function(req,res){
             }
         }
     );
-});
-
-// Translate Request
-app.get('/api/getcards*', function (req, res) {
-    var UserID = req.query.id;
-
-    db.all(`SELECT * from FlashCards where UserID = ${UserID}`, [], (err, rows) => {
-        if (err) {
-            throw err;
-        }
-
-        res.send(rows);
-    });
-
 });

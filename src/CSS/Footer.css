@@ -1,0 +1,15 @@
+#footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;    
+    font-family: helvetica;
+    color: white;
+    height: 5%;
+    border-top: 1.5px solid gray;
+    background-color: #606a9b;
+    
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+

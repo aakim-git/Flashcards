@@ -12,7 +12,7 @@ class Header extends React.Component{
 	render(){
 		return(
 			<div id = "header">
-				<ContinueButton />
+				<ContinueButton ButtonText={this.props.ButtonText}/>
 				<Link to="/review" id = "logo-container">
 					<h1 id="logo">Lango!</h1>
 				</Link>
@@ -25,9 +25,9 @@ class Header extends React.Component{
 class ContinueButton extends React.Component{
 	render(){
 		return(
-			<Link to="/create" id = "Start-Create-Button">
+			<Link to="/create" class = "Transition-Button">
 				<button type = "button">
-					Add
+					{this.props.ButtonText}
 				</button>
 			</Link>
 		);
@@ -109,7 +109,7 @@ class Practice extends React.Component{
 	render(){
 		return(
 			<main>
-				<Header />
+				<Header ButtonText="Add"/>
 				<CardPracticeBody />
 				<Footer/>
 			</main>
