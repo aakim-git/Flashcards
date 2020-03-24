@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import $ from 'jquery';
 import '../CSS/CardReviewPage.css';
+import DeleteIcon from '../Assets/delete.png';
 
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
@@ -46,7 +47,7 @@ class LogoutButton extends React.Component{
 		return(
             <div class = "Transition-Button">
 				<button type = "button" onClick={this.logoff}>
-					Logout
+					{(User.UserID === -1) ? 'Login' : 'Logout'}
 				</button>
 			</div>
 		);
@@ -117,9 +118,19 @@ class Review extends React.Component{
                     <div class = "entry">
                         <div class = "side1"> {card.side1} </div>
                         <div class = "side2"> {card.side2} </div>
-                        <button onClick = {this.DeleteCard.bind(this,card)}> Delete </button>
+                        <button onClick = {this.DeleteCard.bind(this, card)}> 
+                            <img src={DeleteIcon} id="DeleteIcon" alt="Delete Flashcard"/>
+                        </button>
                     </div>
                 ))
+                
+            // If there are odd num of flashcards, even out the array. 
+            if(ReviewBody.length % 2 == 1){
+                ReviewBody.push(
+                    <div class = "spacer">
+                    </div>
+                );
+            }
         }
         
 		return(

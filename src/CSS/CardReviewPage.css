@@ -3,35 +3,58 @@
 
 #ReviewList {
     margin: auto;
-    width: 60%;
+    width: 90%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    height: 80%;
 }
 
 .entry {
-    font-family: helvetica;
+    font-family: 'Calibri', sans-serif;
     font-size: 10pt;
-    flex: 0 1 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    position: relative;
+    flex: 0 1 40%;
     display: flex;
-    padding: 3%;
-    background-color: #f0f6ff;
-    margin: 0 0 0.7% 0;
+    text-align: center;
+    height: 40%;
+    margin: 0 1%;
+}
+
+.entry > div {
+    flex-basis: 50%;
+    height: 100%;
+    
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .side1 {
     width: 7%;
-    border-right: 2px solid #606a9b;
-    padding: 3%;
+    border-right: 1px solid #767676;
 }
 
 .side2 {
-    padding: 3%;
-    margin: 0 0 0 0.7%;
+    background: linear-gradient(to right, black -10%, #EFEFEF 5%);
 }
 
-.spacer {
-    padding: 5%;
+.entry > button {
+    position: absolute;
+    display: inline-block;
+    right: 5px;
+    top: 5px;
+}
+
+.entry > button > img {
+    width: 20px;
+    height: 20px;
+}
+
+#ReviewList .spacer{
+    flex: 0 1 42%;
 }

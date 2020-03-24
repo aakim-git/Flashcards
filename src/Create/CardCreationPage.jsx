@@ -236,7 +236,7 @@ class CardCreationBody extends React.Component{
     
 	render(){
 		return(
-			<div id = "body">
+			<div id = "CardCreationBody">
 				<div id = "Card-View-Pane">
 					<FrontCard UpdateFrontText = {this.UpdateFrontText} TranslateInput = {this.TranslateInput} />
 					<div id = "spacer"></div>

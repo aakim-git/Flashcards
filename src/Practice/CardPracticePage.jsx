@@ -75,7 +75,6 @@ class CardPracticeBody extends React.Component{
 				(data) => {
 					this.cards = data;
 					this.NextCard();
-					console.log("got cards");
 				}
 		});
 	}

@@ -11,6 +11,16 @@ body {
     font-size: 100%;
 }
 
+button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
 textarea:focus {
     outline: none;
 }
@@ -18,6 +28,8 @@ textarea:focus {
 textarea {
     border: none;
     resize: none;
+   font-family: inherit;
+   font-size: inherit;
 }
 
 #body {
@@ -26,4 +38,9 @@ textarea {
     align-items: center;
     flex-direction: row;
     align-content: flex-start;
+}
+
+#root > * {
+    width: 100%;
+    height: 100%;
 }

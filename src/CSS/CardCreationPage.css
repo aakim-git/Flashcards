@@ -10,7 +10,7 @@
 }
 
 #spacer{
-    width: 10vh;   
+    width: 30px;   
 }
 
 div.textCard {
@@ -18,14 +18,14 @@ div.textCard {
     border-style: solid;
     border-width: 2px;
     border-color: gray;
+    padding: 0 1%;
+    width: 300px;
+    height: 220px;
     
-    width: 55vh;
-    height: 40vh;
-
     display: flex;
-
     justify-content: center;
     align-items: center;
+    font-family: 'Calibri', sans-serif;
 }
 
 div.textCard > textarea {
@@ -34,8 +34,8 @@ div.textCard > textarea {
     overflow: auto;
     height: auto;
     width: 100%;
-    text-align:center;
-
+    text-align: center;
+    font-family: 'Calibri', sans-serif;
 }
 
 #Save-Button-Container{
@@ -47,10 +47,9 @@ div.textCard > textarea {
     font-size: 10pt;
     border-radius: 7px;
     background: #71c7aa;
-    float: right;
-    padding: 1vh 4vh 1vh 4vh;
+    padding: 5px 25px;
     border: 1.5px solid #88cbb5;
-    height: 6%;
+    height: 30px;
     color: white;
 }
 

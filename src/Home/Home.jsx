@@ -25,10 +25,7 @@ class LoginPanel extends React.Component{
 	render(){
 		return(
 			<div id = "LoginPanel">
-				<OAuth 
-					provider='google'
-					socket={socket}
-				/>
+				<OAuth id = "Google-Login-Button" provider='google' socket={socket} />
                 <GuestLoginButton />
 			</div>
 		);
@@ -50,11 +47,10 @@ class GuestLoginButton extends React.Component{
     
 	render(){
 		return(
-			<div id = "Guest-Login-Button">
-				<button type = "button" onClick={this.CreateGuestSession}>
-					Login as Guest
-				</button>
-			</div>
+            <button id = "Guest-Login-Button" type = "button" onClick={this.CreateGuestSession}>
+                <p> L </p>
+                Login as Guest
+            </button>
 		);
 	}
 }

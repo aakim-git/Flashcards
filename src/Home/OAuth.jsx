@@ -85,7 +85,7 @@ export default class OAuth extends React.Component {
 
 	render() {
 		return (
-			<button onClick={this.startAuth}>
+			<button id = {this.props.id} onClick={this.startAuth}>
 				<img src={GoogleIcon} id="GoogleIcon" alt="Google Icon"/>
 				Log in with Google
 			</button>

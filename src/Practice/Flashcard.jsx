@@ -5,7 +5,7 @@ class CardFront extends React.Component {
 		return(
 			<div className='card-side side-front'>
 				<div className='card-side-container'>
-					<h2 id='trans'>{this.props.text}</h2>
+					<p id='trans'>{this.props.text}</p>
 				</div>
 			</div>
 		);
@@ -17,7 +17,7 @@ class CardBack extends React.Component {
 		return(
 			<div className='card-side side-back'>
 				<div className='card-side-container'>
-					<h2 id='congrats'>{this.props.text}</h2>
+					<p id='congrats'>{this.props.text}</p>
 				</div>
 			</div>
 		);
