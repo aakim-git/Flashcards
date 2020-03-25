@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import {Link} from "react-router-dom";
+import Dropdown from '../Assets/DropdownMenu'
 import '../CSS/CardCreationPage.css';
 import Snackbar from '@material-ui/core/Snackbar';
 import Cookies from 'universal-cookie';
@@ -39,7 +40,7 @@ class ContinueButton extends React.Component{
 
         if (User.UserID === -1) {
             ConditionalLink = 
-                <div class = "Transition-Button" onClick = {this.ActivatePopup}>
+                <div className = "Transition-Button" onClick = {this.ActivatePopup}>
                     <button type = "button">
                         Practice
                     </button>
@@ -59,7 +60,7 @@ class ContinueButton extends React.Component{
         
         else {
             ConditionalLink = 
-                <Link to="/practice" class = "Transition-Button">
+                <Link to="/practice" className = "Transition-Button">
                     <button type = "button">
                         Practice
                     </button>
@@ -101,7 +102,7 @@ class FrontCard extends React.Component{
 
 	CheckReturn(event) {
 		if(event.charCode === 13){
-			this.props.TranslateInput(this.TextArea.current.value);
+			this.props.TranslateInput(this.TextArea.current.value, "ka");
             event.preventDefault();
 		}
 	}
@@ -129,6 +130,7 @@ class BackCard extends React.Component{
 		return(
 			<div className="textCard" id = "BackCard">
 				<p>{this.props.TranslatedText}</p>
+                <Dropdown starting = "Spanish" SetLanguage = {this.props.SetLanguage}/>
 			</div>
 		);
 	}
@@ -174,10 +176,11 @@ class CardCreationBody extends React.Component{
 		this.TranslateInput = this.TranslateInput.bind(this);
 		this.UpdateFrontText = this.UpdateFrontText.bind(this);
 		this.UpdateBackText = this.UpdateBackText.bind(this);
+        this.SetLanguage = this.SetLanguage.bind(this);
 		this.SaveCard = this.SaveCard.bind(this);
         this.ActivatePopup = this.ActivatePopup.bind(this);
         this.ClosePopup = this.ClosePopup.bind(this);
-        this.state = { popupOpen: false };
+        this.state = { language: "es", popupOpen: false };
 
 		this.FrontText = "";
 		this.BackText = "Type a word, and hit ENTER to translate!";
@@ -185,6 +188,7 @@ class CardCreationBody extends React.Component{
     
     ActivatePopup() { if(User.UserID !== -1) { this.setState({popupOpen: true}); } };
     ClosePopup() { this.setState({popupOpen: false}); };
+    SetLanguage(nextLanguage) { this.setState({language: nextLanguage}); }
 
 	SaveCard(){
         if(User.UserID !== -1){
@@ -206,8 +210,8 @@ class CardCreationBody extends React.Component{
 		
 	}
 
-	TranslateInput(data) {
-		var url = "./translate?english=" + data;
+	TranslateInput(input, language) {
+		var url = "./translate?input=" + input + "&language=" + this.state.language;
 		this.UpdateBackText("Translating...");
 		$.ajax({
 			type: "GET",
@@ -240,7 +244,7 @@ class CardCreationBody extends React.Component{
 				<div id = "Card-View-Pane">
 					<FrontCard UpdateFrontText = {this.UpdateFrontText} TranslateInput = {this.TranslateInput} />
 					<div id = "spacer"></div>
-					<BackCard TranslatedText = {this.BackText} />
+					<BackCard TranslatedText = {this.BackText} SetLanguage = {this.SetLanguage}/>
 				</div>
 				<SaveButton SaveCard = {this.SaveCard}/>
                 

@@ -23,7 +23,7 @@ var router = express.Router();
 
 // Set up Translate API Usage
 app.use(express.json());
-const APIkey = "AIzaSyASA6UAaiHkeRRrA_-Vx0Q6dFMs0CLsOJk"; 
+const APIkey = "AIzaSyDbAagSQLt-TlgJGfJK3I_G5_gjAXOv4ZM"; 
 const translateURL = "https://translation.googleapis.com/language/translate/v2?key="+APIkey
 
 // Set up Login and User Authentication
@@ -184,14 +184,10 @@ app.get('/api/getcards*', function (req, res) {
 
 // Ask Google Translate API to process word. 
 app.get('/translate*', function(req,res){
-    let Original = req.query.english;
-
     let requestObject = {
         "source": "en",
-        "target": "fr",
-        "q": [
-            Original
-        ]
+        "target": req.query.language,
+        "q": [ req.query.input ]
     }
             
     // Make the request
@@ -208,11 +204,13 @@ app.get('/translate*', function(req,res){
             if ((err) || (APIresHead.statusCode != 200)) {
                 console.log("Got API error");
                 console.log(APIresBody);
+                res.sendStatus(400);
             }
             
             else {
                 if (APIresHead.error) {
                     console.log(APIresHead.error);
+                    res.sendStatus(400);
                 }
                 else {
                     var result = {};

@@ -125,7 +125,7 @@ class Review extends React.Component{
                 ))
                 
             // If there are odd num of flashcards, even out the array. 
-            if(ReviewBody.length % 2 == 1){
+            if(ReviewBody.length % 2 === 1){
                 ReviewBody.push(
                     <div class = "spacer">
                     </div>
