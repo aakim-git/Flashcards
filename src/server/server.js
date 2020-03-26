@@ -11,7 +11,7 @@ const cors = require('cors');
 const socketio = require('socket.io');
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("Flashcards.db");  
+const db = new sqlite3.Database("./src/server/Flashcards.db");  
 
 // Set up server connection
 const port = 8080; 
