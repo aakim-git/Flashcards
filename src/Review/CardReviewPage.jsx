@@ -109,10 +109,7 @@ class Review extends React.Component{
 
 	render(){
         let ReviewBody;
-        if(this.state.cards.length === 0){
-            ReviewBody = "You have no flashcards yet!"
-        }
-        else {
+        if(Array.isArray(this.state.cards) && this.state.cards.length) {
             ReviewBody = 
                 this.state.cards.map(card => (
                     <div class = "entry">
@@ -131,6 +128,9 @@ class Review extends React.Component{
                     </div>
                 );
             }
+        }
+        else {
+            ReviewBody = "You have no flashcards yet!"
         }
         
 		return(
